@@ -1,0 +1,46 @@
+{
+  "coaching": {
+    "src": "assets/img/coaching.jpg",
+    "title": "gym 2",
+    "creator": "FORM E FOR ME",
+    "creator_url": "https://www.flickr.com/photos/78218545@N07",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/78218545@N07/8152951831",
+    "source": "flickr"
+  },
+  "training2": {
+    "src": "assets/img/training2.jpg",
+    "title": "USS George H.W. Bush (CVN 77)_140710-N-CS564-054",
+    "creator": "U.S. Naval Forces Central Command/U.S. Fifth Fleet",
+    "creator_url": "https://www.flickr.com/photos/48776503@N05",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/48776503@N05/14454228398",
+    "source": "flickr"
+  },
+  "ebook2": {
+    "src": "assets/img/ebook2.jpg",
+    "title": "Complete Guide to Fitness Health",
+    "creator": "The COM Library",
+    "creator_url": "https://www.flickr.com/photos/11141891@N05",
+    "license": "by-nc-nd",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-nd/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/11141891@N05/26226026368",
+    "source": "flickr"
+  },
+  "hero": {
+    "src": "assets/img/hero.jpg",
+    "title": "strong athletic man",
+    "creator": "LyndaSanchez",
+    "creator_url": "https://www.flickr.com/photos/93963757@N05",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/93963757@N05/8551937782",
+    "source": "flickr"
+  }
+}

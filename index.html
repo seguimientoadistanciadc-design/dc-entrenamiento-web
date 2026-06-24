@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DcEntrenamiento — Asesoría de hipertrofia personalizada y recursos digitales para atletas que buscan progresar con metodología basada en evidencia." />
+  <title>DcEntrenamiento — Metodología de entrenamiento basada en evidencia</title>
+
+  <!-- Fonts: Libre Baskerville (display científica) + Source Sans 3 (body legible) + JetBrains Mono (datos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=20260622" />
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navegación principal">
+    <a href="#inicio" class="nav-logo" aria-label="DcEntrenamiento inicio">
+      <img src="assets/img/logo.png" alt="DcEntrenamiento" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#sobre" class="nav-link">Sobre mí</a></li>
+      <li><a href="#asesoria" class="nav-link">Asesoría</a></li>
+      <li><a href="#recursos" class="nav-link">Recursos</a></li>
+      <li><a href="#blog" class="nav-link">Publicaciones</a></li>
+      <li><a href="#contacto" class="nav-link nav-link--cta">Contactar</a></li>
+    </ul>
+    <div class="nav-actions">
+      <!-- Cuenta de usuario — alterna entre invitado y autenticado vía JS (.is-authed) -->
+      <div class="nav-account" id="nav-account">
+        <button class="nav-account-btn" type="button" data-auth-open>Ingresar</button>
+        <div class="nav-account-user">
+          <button class="nav-account-trigger" type="button" data-account-toggle aria-haspopup="true" aria-expanded="false">
+            <span class="nav-account-avatar" data-user-initial>U</span>
+            <span class="nav-account-label" data-user-name>Mi Cuenta</span>
+            <span class="nav-account-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="nav-account-dropdown" data-account-dropdown role="menu">
+            <p class="nav-account-email" data-user-email></p>
+            <a href="#" class="nav-account-item" data-nav-consola role="menuitem">Mi Consola</a>
+            <button class="nav-account-item nav-account-item--logout" type="button" data-auth-logout role="menuitem">Cerrar sesión</button>
+          </div>
+        </div>
+      </div>
+      <button class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true" role="dialog" aria-label="Menú móvil">
+    <button class="nav-mobile-close" aria-label="Cerrar menú">✕</button>
+    <ul role="list">
+      <li><a href="#sobre" class="nav-mobile-link">Sobre mí</a></li>
+      <li><a href="#asesoria" class="nav-mobile-link">Asesoría</a></li>
+      <li><a href="#recursos" class="nav-mobile-link">Recursos</a></li>
+      <li><a href="#blog" class="nav-mobile-link">Publicaciones</a></li>
+      <li><a href="#contacto" class="nav-mobile-link nav-mobile-link--cta">Contactar</a></li>
+    </ul>
+  </div>
+  <div class="nav-overlay" aria-hidden="true"></div>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="inicio" aria-label="Presentación">
+    <div class="hero-gradient" data-mouse-gradient aria-hidden="true"></div>
+    <div class="hero-img-wrap" aria-hidden="true">
+      <img src="assets/img/diego-3.jpg" alt="" class="hero-img" loading="eager" />
+      <div class="hero-img-tint"></div>
+    </div>
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="hero-kicker"><span class="kicker-dot"></span>Entrenamiento · Hipertrofia · Evidencia</p>
+      <h1 class="hero-title">
+        <span class="hero-title-line">Desarrollo muscular</span>
+        <span class="hero-title-line hero-title-line--accent">con fundamento</span>
+        <span class="hero-title-line">científico.</span>
+      </h1>
+      <p class="hero-sub">Asesoría de entrenamiento personalizada basada en la evidencia científica actual. Para deportistas que exigen rigor metodológico, no protocolos genéricos.</p>
+      <div class="hero-actions">
+        <a href="#asesoria" class="btn btn--primary">Solicitar asesoría</a>
+        <a href="#recursos" class="btn btn--ghost">Recursos gratuitos</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Continuar</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <section class="stats" aria-label="Indicadores">
+    <div class="stats-grid">
+      <div class="stat reveal" data-reveal>
+        <span class="stat-num" data-count-to="200" data-suffix="+">200+</span>
+        <span class="stat-label">Atletas asesorados</span>
+      </div>
+      <div class="stat reveal" data-reveal>
+        <span class="stat-num" data-count-to="5" data-suffix=" años">5 años</span>
+        <span class="stat-label">De experiencia</span>
+      </div>
+      <div class="stat reveal" data-reveal>
+        <span class="stat-num" data-count-to="98" data-suffix="%">98%</span>
+        <span class="stat-label">Índice de satisfacción</span>
+      </div>
+      <div class="stat reveal" data-reveal>
+        <span class="stat-num instagram-followers">—</span>
+        <span class="stat-label">Seguidores en Instagram</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOBRE ─── -->
+  <section class="sobre" id="sobre" aria-labelledby="sobre-heading">
+    <div class="sobre-inner">
+      <div class="sobre-media reveal" data-reveal>
+        <img src="assets/img/diego-1.jpg" alt="Diego Cassas — entrenador especialista en hipertrofia" class="sobre-img" loading="lazy" />
+        <div class="sobre-badge">
+          <div class="sobre-badge-mono">DC</div>
+          <div>
+            <strong>Diego Cassas</strong>
+            <small>Especialista en hipertrofia</small>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text">
+        <p class="section-kicker reveal" data-reveal>01 — Sobre mí</p>
+        <h2 class="section-heading reveal" data-reveal id="sobre-heading">La metodología<br><em>determina</em> el resultado.</h2>
+        <p class="sobre-body reveal" data-reveal>Soy Diego Cassas, especialista en entrenamiento de hipertrofia. Mi práctica profesional está fundamentada en la literatura científica actual sobre fisiología del ejercicio, periodización y adaptaciones neuromusculares.</p>
+        <p class="sobre-body reveal" data-reveal>Cada programa que diseño parte de un análisis individualizado: historial de entrenamiento, capacidad de recuperación, estructura anatómica y objetivos específicos. No existen plantillas universales porque no existen organismos idénticos.</p>
+        <ul class="sobre-list reveal" data-reveal>
+          <li>Especialización en hipertrofia y periodización del entrenamiento</li>
+          <li>Diseño de programas con sustento en evidencia científica actual</li>
+          <li>Monitoreo cuantitativo del progreso y ajuste de variables</li>
+          <li>Formación y mentoría de profesionales del entrenamiento</li>
+        </ul>
+        <div class="sobre-actions reveal" data-reveal>
+          <a href="#contacto" class="btn btn--primary">Iniciar consulta</a>
+          <a href="https://www.instagram.com/diegocassas/" target="_blank" rel="noopener" class="btn btn--ghost">@diegocassas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MARQUEE ─── -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>HIPERTROFIA</span><span class="accent-sep">—</span>
+      <span>PERIODIZACIÓN</span><span class="accent-sep">—</span>
+      <span>EVIDENCIA</span><span class="accent-sep">—</span>
+      <span>FUERZA</span><span class="accent-sep">—</span>
+      <span>METODOLOGÍA</span><span class="accent-sep">—</span>
+      <span>ADAPTACIÓN</span><span class="accent-sep">—</span>
+      <span>HIPERTROFIA</span><span class="accent-sep">—</span>
+      <span>PERIODIZACIÓN</span><span class="accent-sep">—</span>
+      <span>EVIDENCIA</span><span class="accent-sep">—</span>
+      <span>FUERZA</span><span class="accent-sep">—</span>
+      <span>METODOLOGÍA</span><span class="accent-sep">—</span>
+      <span>ADAPTACIÓN</span><span class="accent-sep">—</span>
+    </div>
+  </div>
+
+  <!-- ─── ASESORÍA ─── -->
+  <section class="asesoria" id="asesoria" aria-labelledby="asesoria-heading">
+    <div class="asesoria-inner">
+      <div class="section-header reveal" data-reveal>
+        <p class="section-kicker">02 — Servicios de asesoría</p>
+        <h2 class="section-heading" id="asesoria-heading">Programas<br><em>estructurados.</em></h2>
+        <p class="section-sub">Tres modalidades de trabajo diseñadas para distintos perfiles y objetivos. Todas con el mismo rigor metodológico.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Plan 4 semanas -->
+        <article class="service-card reveal" data-reveal>
+          <div class="service-card-top">
+            <span class="service-label">PLAN INICIAL</span>
+            <span class="service-weeks">5 semanas</span>
+          </div>
+          <h3 class="service-name">Plan de Entrenamiento<br><em>Fase Inicial</em></h3>
+          <p class="service-desc">Mesociclo introductorio de cinco semanas. Ideal para atletas que inician un proceso de entrenamiento estructurado o retoman la práctica tras una pausa. Establece las bases técnicas y de volumen necesarias para la progresión.</p>
+          <div class="service-price" data-product="asesoria-inicial">
+            <span class="service-price-old" data-price-old>$1,000</span>
+            <span class="service-price-amount" data-price-amount>$850</span>
+            <span class="service-price-cur" data-price-cur>MXN</span>
+          </div>
+          <ul class="service-features">
+            <li>Evaluación de nivel y capacidades actuales</li>
+            <li>Mesociclo de 5 semanas con estrategias de progresión</li>
+            <li>Selección y justificación de ejercicios</li>
+            <li>Guía de ejecución técnica por movimiento</li>
+            <li>Revisión al cierre del mesociclo</li>
+          </ul>
+          <a href="#contacto" class="btn btn--service">Consultar disponibilidad →</a>
+        </article>
+
+        <!-- Plan 12 semanas — destacado -->
+        <article class="service-card service-card--featured reveal" data-reveal>
+          <div class="service-card-top">
+            <span class="service-label service-label--featured">MÁS COMPLETO</span>
+            <span class="service-weeks service-weeks--featured">12 semanas</span>
+          </div>
+          <h3 class="service-name">Plan de Entrenamiento<br><em>Programa Completo</em></h3>
+          <p class="service-desc">Bloque de entrenamiento de doce semanas con periodización por mesociclos, progresión sistemática de volumen e intensidad, y ajuste continuo de variables. El programa más completo para generar adaptaciones hipertróficas sostenidas.</p>
+          <div class="service-price" data-product="asesoria-completa">
+            <span class="service-price-old" data-price-old>$3,000</span>
+            <span class="service-price-amount" data-price-amount>$2,200</span>
+            <span class="service-price-cur" data-price-cur>MXN</span>
+          </div>
+          <ul class="service-features">
+            <li>Análisis completo de historial y objetivos</li>
+            <li>Planificación de 3 tipos de mesociclos integrados (Introducción, Acumulación, Intensificación, Transición)</li>
+            <li>Métricas de progresión semanal: tonelaje, RIR, repeticiones, esfuerzo percibido</li>
+            <li>Protocolo de deload estructurado</li>
+            <li>Guía técnica detallada por ejercicio</li>
+            <li>Seguimiento mensual de métricas</li>
+          </ul>
+          <a href="#contacto" class="btn btn--primary">Solicitar programa →</a>
+        </article>
+
+        <!-- Mentoría -->
+        <article class="service-card service-card--mentoria reveal" data-reveal>
+          <div class="service-card-top">
+            <span class="service-label service-label--mentoria">FORMACIÓN PROFESIONAL</span>
+            <span class="service-weeks">Mentoría</span>
+          </div>
+          <h3 class="service-name">Mentoría para<br><em>Profesionales</em></h3>
+          <p class="service-desc">Programa de acompañamiento profesional dirigido a estudiantes de ciencias del ejercicio y entrenadores en ejercicio. Abordaremos el diseño de programas, análisis de evidencia, comunicación con clientes y desarrollo de criterio clínico-práctico.</p>
+          <div class="service-price" data-product="mentoria">
+            <span class="service-price-amount" data-price-amount>$400</span>
+            <span class="service-price-cur" data-price-cur>MXN</span>
+            <span class="service-price-note">por sesión</span>
+          </div>
+          <ul class="service-features">
+            <li>Revisión y análisis de programas diseñados por el aprendiz</li>
+            <li>Lectura crítica de literatura científica aplicada</li>
+            <li>Desarrollo de protocolo de evaluación y seguimiento</li>
+            <li>Sesiones de consultoría periódicas</li>
+            <li>Retroalimentación estructurada caso a caso</li>
+          </ul>
+          <a href="#contacto" class="btn btn--service-mentoria">Consultar mentoría →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESO ─── -->
+  <section class="proceso" aria-labelledby="proceso-heading">
+    <div class="proceso-inner">
+      <div class="section-header reveal" data-reveal>
+        <p class="section-kicker">03 — Metodología de trabajo</p>
+        <h2 class="section-heading" id="proceso-heading">Un proceso<br><em>estructurado.</em></h2>
+      </div>
+      <div class="proceso-steps">
+        <div class="proceso-step reveal" data-reveal>
+          <span class="proceso-num">01</span>
+          <h3>Evaluación inicial</h3>
+          <p>Análisis del historial de entrenamiento, objetivos, limitaciones estructurales y capacidad de recuperación. La evaluación es la base del diseño programático.</p>
+        </div>
+        <div class="proceso-divider" aria-hidden="true"></div>
+        <div class="proceso-step reveal" data-reveal>
+          <span class="proceso-num">02</span>
+          <h3>Diseño del programa</h3>
+          <p>Elaboración del plan con periodización, selección de ejercicios fundamentada y progresiones calculadas. Cada variable tiene una justificación técnica explícita.</p>
+        </div>
+        <div class="proceso-divider" aria-hidden="true"></div>
+        <div class="proceso-step reveal" data-reveal>
+          <span class="proceso-num">03</span>
+          <h3>Seguimiento y ajuste</h3>
+          <p>Monitoreo continuo de las métricas de progreso. El programa se ajusta en función de la respuesta adaptativa real, no de proyecciones teóricas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RECURSOS ─── -->
+  <section class="volumen" id="recursos" aria-labelledby="volumen-heading">
+    <div class="volumen-inner">
+      <div class="section-header reveal" data-reveal>
+        <p class="section-kicker">04 — Volumen 1</p>
+        <h2 class="section-heading" id="volumen-heading">Temas selectos de<br><em>hipertrofia muscular.</em></h2>
+        <p class="section-sub">Cuatro guías prácticas, basadas en la evidencia, para construir músculo con criterio. Pensadas para atletas, entrenadores y estudiantes de las ciencias del ejercicio.</p>
+      </div>
+
+      <!-- ─── COVERFLOW 3D ─── -->
+      <div class="coverflow" id="coverflow" aria-roledescription="carrusel" aria-label="Portadas del Volumen 1">
+        <button class="coverflow-nav coverflow-prev" type="button" aria-label="Portada anterior">‹</button>
+        <div class="coverflow-viewport">
+          <div class="coverflow-stage" data-coverflow-stage>
+            <figure class="cf-item" data-cf-index="0">
+              <img src="assets/img/covers/vol1-01-division.jpg" alt="Volumen 1, N.º 01 — División del entrenamiento" loading="lazy" />
+              <figcaption><span class="cf-num">N.º 01</span><span class="cf-name">División</span></figcaption>
+            </figure>
+            <figure class="cf-item" data-cf-index="1">
+              <img src="assets/img/covers/vol1-02-volumen.jpg" alt="Volumen 1, N.º 02 — Volumen de entrenamiento" loading="lazy" />
+              <figcaption><span class="cf-num">N.º 02</span><span class="cf-name">Volumen</span></figcaption>
+            </figure>
+            <figure class="cf-item" data-cf-index="2">
+              <img src="assets/img/covers/vol1-03-esfuerzo.jpg" alt="Volumen 1, N.º 03 — Proximidad al fallo" loading="lazy" />
+              <figcaption><span class="cf-num">N.º 03</span><span class="cf-name">Esfuerzo</span></figcaption>
+            </figure>
+            <figure class="cf-item" data-cf-index="3">
+              <img src="assets/img/covers/vol1-04-ejercicios.jpg" alt="Volumen 1, N.º 04 — Selección de ejercicios" loading="lazy" />
+              <figcaption><span class="cf-num">N.º 04</span><span class="cf-name">Ejercicios</span></figcaption>
+            </figure>
+          </div>
+        </div>
+        <button class="coverflow-nav coverflow-next" type="button" aria-label="Portada siguiente">›</button>
+        <div class="coverflow-caption" data-coverflow-caption aria-live="polite"></div>
+        <div class="coverflow-dots" data-coverflow-dots></div>
+      </div>
+
+      <!-- ─── OFERTA: VOLUMEN 1 COMPLETO ─── -->
+      <div class="vol-offer reveal" data-reveal>
+        <div class="vol-offer-info">
+          <span class="vol-offer-tag">PAQUETE COMPLETO</span>
+          <h3 class="vol-offer-title">Volumen 1 — Las 4 guías</h3>
+          <p class="vol-offer-desc">Llévate la colección completa: <strong>División, Volumen, Esfuerzo y Ejercicios</strong>. Todo lo esencial para programar tu hipertrofia con base científica, en un solo paquete.</p>
+          <ul class="vol-offer-list">
+            <li>4 guías en PDF de alta calidad</li>
+            <li>Acceso permanente desde tu cuenta</li>
+            <li>Fundamentadas en la evidencia actual</li>
+          </ul>
+        </div>
+        <div class="vol-offer-buy">
+          <div class="vol-offer-price" data-product="volumen-1">
+            <span class="vol-price-amount" data-vol-price data-price-amount>$399</span>
+            <span class="vol-price-cur" data-price-cur>MXN</span>
+          </div>
+          <p class="vol-price-note">Pago único · Acceso de por vida</p>
+          <button class="btn btn--primary btn--full vol-buy-btn" type="button" data-vol-buy="volumen-1">Comprar Volumen 1 →</button>
+          <p class="vol-buy-sub">🔒 Pago seguro con Mercado Pago</p>
+        </div>
+      </div>
+
+      <!-- ─── PRESENTACIÓN GRATIS (captura de correo) ─── -->
+      <div class="vol-lead reveal" data-reveal>
+        <div class="vol-lead-cover">
+          <img src="assets/img/covers/vol1-presentacion.jpg" alt="Presentación del Volumen 1" loading="lazy" />
+          <span class="vol-lead-badge">GRATIS</span>
+        </div>
+        <div class="vol-lead-body">
+          <p class="vol-lead-kicker">Empieza por aquí</p>
+          <h3 class="vol-lead-title">Presentación del Volumen 1</h3>
+          <p class="vol-lead-desc">Una introducción gratuita a las cuatro guías: qué incluye cada número y cómo aplicarlo en tu entrenamiento. Déjame tu correo y la descargas al instante.</p>
+          <form class="vol-lead-form" id="lead-form" novalidate
+                data-lead-file="presentacion-volumen-1.pdf">
+            <input type="email" name="email" placeholder="tu@correo.com" required autocomplete="email" aria-label="Tu correo electrónico" />
+            <button type="submit" class="btn btn--primary vol-lead-submit">
+              <span class="vol-lead-text">Descargar gratis</span>
+              <span class="vol-lead-loading" aria-hidden="true">Enviando…</span>
+            </button>
+          </form>
+          <p class="vol-lead-msg" data-lead-msg hidden></p>
+          <p class="vol-lead-privacy">Sin spam. Solo el PDF y novedades del Volumen 1.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BLOG ─── -->
+  <section class="blog" id="blog" aria-labelledby="blog-heading">
+    <div class="blog-inner">
+      <div class="section-header reveal" data-reveal>
+        <p class="section-kicker">05 — Publicaciones científicas</p>
+        <h2 class="section-heading" id="blog-heading">Divulgación<br><em>fundamentada.</em></h2>
+        <p class="section-sub">Artículos publicados en colaboración con <strong>CDEFIS</strong> — Centro de Desarrollo Físico e Inteligencia en Salud.</p>
+      </div>
+
+      <div class="blog-grid">
+        <!-- Blog card 1 -->
+        <article class="blog-card reveal" data-reveal>
+          <div class="blog-card-meta">
+            <span class="blog-cat">Hipertrofia</span>
+            <span class="blog-date" data-blog-date="1">—</span>
+          </div>
+          <h3 class="blog-title" data-blog-title="1">Principios de programación para el desarrollo de la hipertrofia muscular</h3>
+          <p class="blog-excerpt" data-blog-excerpt="1">Revisión de los fundamentos metodológicos que determinan la eficacia de un programa orientado al desarrollo muscular: volumen, frecuencia, intensidad y densidad.</p>
+          <a href="https://www.cdefis.edu.mx/investigacion/blog" target="_blank" rel="noopener" class="blog-link" data-blog-url="1">
+            Leer en CDEFIS →
+          </a>
+        </article>
+
+        <!-- Blog card 2 -->
+        <article class="blog-card reveal" data-reveal>
+          <div class="blog-card-meta">
+            <span class="blog-cat">Periodización</span>
+            <span class="blog-date" data-blog-date="2">—</span>
+          </div>
+          <h3 class="blog-title" data-blog-title="2">Periodización del entrenamiento de fuerza: modelos y aplicaciones prácticas</h3>
+          <p class="blog-excerpt" data-blog-excerpt="2">Análisis comparativo de los modelos de periodización lineal, ondulante y por bloques, con consideraciones para su implementación en contextos de entrenamiento no competitivo.</p>
+          <a href="https://www.cdefis.edu.mx/investigacion/blog" target="_blank" rel="noopener" class="blog-link" data-blog-url="2">
+            Leer en CDEFIS →
+          </a>
+        </article>
+
+        <!-- Blog card 3 -->
+        <article class="blog-card reveal" data-reveal>
+          <div class="blog-card-meta">
+            <span class="blog-cat">Evidencia</span>
+            <span class="blog-date" data-blog-date="3">—</span>
+          </div>
+          <h3 class="blog-title" data-blog-title="3">Volumen de entrenamiento y adaptaciones hipertróficas: lo que dice la evidencia</h3>
+          <p class="blog-excerpt" data-blog-excerpt="3">Síntesis de la evidencia disponible sobre la relación dosis-respuesta entre el volumen de entrenamiento y la hipertrofia muscular. Implicaciones prácticas para el diseño de programas.</p>
+          <a href="https://www.cdefis.edu.mx/investigacion/blog" target="_blank" rel="noopener" class="blog-link" data-blog-url="3">
+            Leer en CDEFIS →
+          </a>
+        </article>
+      </div>
+
+      <div class="blog-footer reveal" data-reveal>
+        <p class="blog-footer-note">Los artículos están publicados en el blog de investigación de <strong>CDEFIS</strong>.</p>
+        <a href="https://www.cdefis.edu.mx/investigacion/blog" target="_blank" rel="noopener" class="btn btn--ghost">Ver todas las publicaciones →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACTO ─── -->
+  <section class="contacto" id="contacto" aria-labelledby="contacto-heading">
+    <div class="contacto-inner">
+      <div class="contacto-text reveal" data-reveal>
+        <p class="section-kicker">06 — Contacto</p>
+        <h2 class="section-heading" id="contacto-heading">¿Listo para<br><em>comenzar?</em></h2>
+        <p class="contacto-sub">Comparte tu situación actual y tus objetivos. Evaluaré tu caso y te indicaré qué modalidad de trabajo se ajusta mejor a tu perfil.</p>
+        <div class="contacto-channels">
+          <a href="mailto:seguimientoadistanciadc@gmail.com" class="channel-link">
+            <span class="channel-icon">✉</span>
+            <div>
+              <strong>Correo electrónico</strong>
+              <small>seguimientoadistanciadc@gmail.com</small>
+            </div>
+          </a>
+          <a href="tel:+524433961316" class="channel-link">
+            <span class="channel-icon">☎</span>
+            <div>
+              <strong>Teléfono / WhatsApp</strong>
+              <small>+52 443 396 1316</small>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/diegocassas/" target="_blank" rel="noopener" class="channel-link">
+            <span class="channel-icon">◈</span>
+            <div>
+              <strong>Instagram</strong>
+              <small>@diegocassas</small>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <form class="contacto-form reveal" data-reveal id="contact-form" novalidate aria-label="Formulario de contacto">
+        <div class="form-group">
+          <label for="f-nombre">Nombre completo</label>
+          <input type="text" id="f-nombre" name="nombre" placeholder="Tu nombre" required autocomplete="given-name" />
+        </div>
+        <div class="form-group">
+          <label for="f-email">Correo electrónico</label>
+          <input type="email" id="f-email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="f-servicio">Servicio de interés</label>
+          <select id="f-servicio" name="servicio" required>
+            <option value="" disabled selected>Selecciona una modalidad</option>
+            <option value="plan-4">Plan de entrenamiento — 4 semanas</option>
+            <option value="plan-12">Plan de entrenamiento — 12 semanas</option>
+            <option value="mentoria">Mentoría profesional</option>
+            <option value="consulta">Consulta general</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-experiencia">Años de experiencia en entrenamiento</label>
+          <select id="f-experiencia" name="experiencia">
+            <option value="" disabled selected>Selecciona</option>
+            <option value="menos-1">Menos de 1 año</option>
+            <option value="1-3">1 a 3 años</option>
+            <option value="3-5">3 a 5 años</option>
+            <option value="mas-5">Más de 5 años</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-mensaje">Descripción del caso</label>
+          <textarea id="f-mensaje" name="mensaje" placeholder="Describe tu situación actual, objetivos específicos y cualquier consideración relevante para la evaluación inicial..." rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full" id="form-submit">
+          <span class="btn-text">Enviar solicitud</span>
+          <span class="btn-loading" aria-hidden="true">Procesando…</span>
+          <span class="btn-success" aria-hidden="true">✓ Solicitud enviada</span>
+        </button>
+        <p class="form-note">Tiempo de respuesta habitual: menos de 24 horas.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="DcEntrenamiento" class="footer-logo-img" />
+        <p>Metodología de entrenamiento<br>basada en evidencia científica.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegación pie de página">
+        <strong>Navegación</strong>
+        <a href="#sobre">Sobre mí</a>
+        <a href="#asesoria">Asesoría</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#blog">Publicaciones</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="footer-contact">
+        <strong>Contacto</strong>
+        <a href="mailto:seguimientoadistanciadc@gmail.com">seguimientoadistanciadc@gmail.com</a>
+        <a href="tel:+524433961316">+52 443 396 1316</a>
+        <a href="https://www.instagram.com/diegocassas/" target="_blank" rel="noopener">Instagram: @diegocassas</a>
+      </div>
+      <div class="footer-credits" id="photo-credits"></div>
+    </div>
+    <div class="footer-bottom">
+      <small>© 2026 DcEntrenamiento · Diego Cassas · Todos los derechos reservados</small>
+    </div>
+  </footer>
+
+  <!-- ─── MODAL DE CUENTA (login / registro) ─── -->
+  <div class="auth-modal" id="auth-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+    <div class="auth-overlay" data-auth-close></div>
+    <div class="auth-dialog" role="document">
+      <button class="auth-close" type="button" data-auth-close aria-label="Cerrar">✕</button>
+
+      <div class="auth-head">
+        <img src="assets/img/logo.png" alt="DcEntrenamiento" class="auth-logo" />
+        <h2 class="auth-title" id="auth-modal-title">Tu cuenta</h2>
+        <p class="auth-subtitle">Accede a tus recursos y compras.</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab is-active" type="button" data-auth-tab="login" role="tab" aria-selected="true">Iniciar sesión</button>
+        <button class="auth-tab" type="button" data-auth-tab="register" role="tab" aria-selected="false">Crear cuenta</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form class="auth-form" id="login-form" data-auth-panel="login" novalidate>
+        <div class="form-group">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" name="password" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+        <p class="auth-error" data-auth-error hidden></p>
+        <button type="submit" class="btn btn--primary btn--full auth-submit">
+          <span class="auth-submit-text">Iniciar sesión</span>
+          <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
+        </button>
+        <p class="auth-switch">¿No tienes cuenta? <button type="button" class="auth-link" data-auth-tab="register">Créala aquí</button></p>
+      </form>
+
+      <!-- REGISTRO -->
+      <form class="auth-form" id="register-form" data-auth-panel="register" novalidate hidden>
+        <div class="form-group">
+          <label for="register-name">Nombre completo</label>
+          <input type="text" id="register-name" name="full_name" placeholder="Tu nombre" required autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="register-email">Correo electrónico</label>
+          <input type="email" id="register-email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="register-password">Contraseña</label>
+          <input type="password" id="register-password" name="password" placeholder="Mínimo 8 caracteres" required minlength="8" maxlength="72" autocomplete="new-password" />
+        </div>
+        <p class="auth-error" data-auth-error hidden></p>
+        <button type="submit" class="btn btn--primary btn--full auth-submit">
+          <span class="auth-submit-text">Crear cuenta</span>
+          <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
+        </button>
+        <p class="auth-switch">¿Ya tienes cuenta? <button type="button" class="auth-link" data-auth-tab="login">Inicia sesión</button></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── MI CONSOLA (panel privado del usuario) ─── -->
+  <div class="consola" id="consola" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mi Consola">
+    <div class="consola-overlay" data-consola-close></div>
+    <div class="consola-panel">
+      <header class="consola-head">
+        <div>
+          <p class="consola-kicker">Mi Consola</p>
+          <h2 class="consola-title">Hola, <span data-consola-name>atleta</span></h2>
+        </div>
+        <button class="consola-close" type="button" data-consola-close aria-label="Cerrar">✕</button>
+      </header>
+      <div class="consola-body" data-consola-body>
+        <!-- Contenido generado por main.js (estados: cargando / vacío / lista) -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── TOAST (avisos breves) ─── -->
+  <div class="dc-toast" id="dc-toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Configuración de entorno: en local apunta al backend local; publicada,
+       apunta al backend en Railway. Debe ir ANTES de auth.js/main.js. -->
+  <script>
+    (function () {
+      var local = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+      window.DC_CONFIG = {
+        apiBase: local
+          ? "http://localhost:8000"
+          : "https://dc-api-production-9330.up.railway.app",
+      };
+    })();
+  </script>
+
+  <!-- Scripts -->
+  <script defer src="lib/gsap.min.js"></script>
+  <script defer src="lib/ScrollTrigger.min.js"></script>
+  <script defer src="lib/manifest.js"></script>
+  <script defer src="auth.js?v=20260624"></script>
+  <script defer src="main.js?v=20260624"></script>
+</body>
+</html>
