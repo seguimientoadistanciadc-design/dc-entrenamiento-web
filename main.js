@@ -159,21 +159,14 @@
 
   /* ─── GSAP SCROLL ANIMATIONS ─── */
   function initScrollAnimations() {
-    if (!window.gsap || !window.ScrollTrigger) return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.from(".service-card", {
-      y: 45, opacity: 0, duration: 0.8, stagger: 0.1, ease: "expo.out",
-      scrollTrigger: { trigger: ".services-grid", start: "top 82%", once: true }
-    });
-    gsap.from(".blog-card", {
-      y: 40, opacity: 0, duration: 0.8, stagger: 0.1, ease: "expo.out",
-      scrollTrigger: { trigger: ".blog-grid", start: "top 82%", once: true }
-    });
-    gsap.from(".resource-card", {
-      y: 40, opacity: 0, duration: 0.8, stagger: 0.12, ease: "expo.out",
-      scrollTrigger: { trigger: ".resources-grid", start: "top 82%", once: true }
-    });
+    // Nota: estas tarjetas (.service-card, .blog-card) YA aparecen con el sistema
+    // `.reveal` (IntersectionObserver en initReveals), que funciona con cualquier
+    // tipo de scroll. Antes había aquí animaciones GSAP con ScrollTrigger que, al
+    // no estar integradas con el scroll suave (Lenis), NO se disparaban al hacer
+    // scroll y dejaban las tarjetas en opacity:0 en línea (invisibles, con hueco).
+    // Se eliminaron para evitar ese conflicto. (`.resource-card`/`.resources-grid`
+    // ya no existen en el HTML.)
+    return;
   }
 
   /* ─── CARD TILT ─── */
