@@ -138,7 +138,7 @@
         function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
         function update(now) {
           const p = Math.min((now - start) / duration, 1);
-          el.textContent = Math.round(easeOut(p) * target) + suffix;
+          el.textContent = Math.round(easeOut(p) * target).toLocaleString("es-MX") + suffix;
           if (p < 1) requestAnimationFrame(update);
         }
         requestAnimationFrame(update);
@@ -151,10 +151,10 @@
   function initInstagramStat() {
     const el = document.querySelector(".instagram-followers");
     if (!el) return;
-    // Static display — replace with real number when known
-    el.textContent = "9,000+";
-    el.dataset.countTo = "9000";
-    el.dataset.suffix = "+";
+    // Número real de seguidores en Instagram.
+    el.textContent = "7,500";
+    el.dataset.countTo = "7500";
+    el.dataset.suffix = "";
   }
 
   /* ─── GSAP SCROLL ANIMATIONS ─── */
