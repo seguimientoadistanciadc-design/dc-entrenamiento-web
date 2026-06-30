@@ -197,16 +197,46 @@
     form.addEventListener("submit", async e => {
       e.preventDefault();
       if (!form.reportValidity()) return;
+
+      const payload = {
+        nombre: (form.querySelector('[name="nombre"]').value || "").trim(),
+        email: (form.querySelector('[name="email"]').value || "").trim(),
+        servicio: form.querySelector('[name="servicio"]').value || "",
+        experiencia: form.querySelector('[name="experiencia"]').value || null,
+        mensaje: (form.querySelector('[name="mensaje"]').value || "").trim()
+      };
+
       btn.classList.add("is-loading");
       btn.disabled = true;
-      await new Promise(r => setTimeout(r, 1600));
+
+      const base = (window.DCAuth && window.DCAuth.apiBase) || "";
+      let ok = false;
+      try {
+        const res = await fetch(base + "/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        ok = res.ok;
+      } catch (err) {
+        ok = false;
+      }
+
       btn.classList.remove("is-loading");
-      btn.classList.add("is-success");
-      setTimeout(() => {
-        btn.classList.remove("is-success");
+
+      if (ok) {
+        btn.classList.add("is-success");
+        setTimeout(() => {
+          btn.classList.remove("is-success");
+          btn.disabled = false;
+          form.reset();
+        }, 4000);
+      } else {
         btn.disabled = false;
-        form.reset();
-      }, 4000);
+        if (window.DCAuth && window.DCAuth.toast) {
+          window.DCAuth.toast("No se pudo enviar tu solicitud. Escríbenos a seguimientoadistanciadc@gmail.com o inténtalo más tarde.");
+        }
+      }
     });
   }
 
