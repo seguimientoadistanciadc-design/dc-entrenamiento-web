@@ -1,2 +1,5 @@
 .DS_Store
 *.log
+
+# Archivos fuente de herramientas (NO publicar): el del video tiene API key de ElevenLabs.
+*integrar*.html

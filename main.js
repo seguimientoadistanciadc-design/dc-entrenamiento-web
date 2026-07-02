@@ -601,6 +601,41 @@
       });
   }
 
+  /* ─── HERRAMIENTA GRATUITA (candado por registro) ─── */
+  function initToolGate() {
+    var A = window.DCAuth;
+    var authed = A && A.isAuthenticated && A.isAuthenticated();
+
+    // Clic en "Abrir calculadora": con sesión navega normal; sin sesión, abre registro.
+    document.addEventListener("click", function (e) {
+      var link = e.target.closest("[data-tool-open]");
+      if (!link) return;
+      if (window.DCAuth && window.DCAuth.isAuthenticated && window.DCAuth.isAuthenticated()) return;
+      e.preventDefault();
+      if (window.DCAuth && window.DCAuth.openModal) window.DCAuth.openModal("register");
+      if (window.DCAuth && window.DCAuth.toast) window.DCAuth.toast("Crea tu cuenta gratis para usar la calculadora.");
+    });
+
+    // Si ya hay sesión, ajusta la nota del botón.
+    if (authed) {
+      document.querySelectorAll("[data-tool-note]").forEach(function (n) {
+        n.textContent = "✓ Tienes acceso — ¡úsala cuando quieras!";
+      });
+    }
+
+    // Si el usuario vino de la calculadora sin cuenta (?auth=registro), abre el registro.
+    try {
+      var params = new URLSearchParams(location.search);
+      if (params.get("auth") === "registro") {
+        if (window.DCAuth && window.DCAuth.openModal) window.DCAuth.openModal("register");
+        if (window.DCAuth && window.DCAuth.toast) window.DCAuth.toast("Crea tu cuenta gratis para usar la calculadora.");
+        params.delete("auth"); params.delete("next");
+        var q = params.toString();
+        history.replaceState(null, "", location.pathname + (q ? "?" + q : "") + location.hash);
+      }
+    } catch (err) {}
+  }
+
   /* ─── BOOT ─── */
   function boot() {
     safe(initNav, "initNav");
@@ -620,6 +655,7 @@
     safe(initVolBuy, "initVolBuy");
     safe(initPagoReturn, "initPagoReturn");
     safe(initConsola, "initConsola");
+    safe(initToolGate, "initToolGate");
   }
 
   if (document.readyState === "loading") {

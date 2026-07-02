@@ -940,3 +940,32 @@ body.consola-open { overflow: hidden; }
   .cf-item { width: 230px; height: 325px; margin: -162px 0 0 -115px; }
   .coverflow-nav { top: 195px; }
 }
+
+/* ─── HERRAMIENTA GRATUITA (Calculadora 1RM) ─── */
+.tool { padding: 7rem 5vw; }
+.tool-inner { max-width: 760px; margin: 0 auto; }
+.tool-card {
+  position: relative; overflow: hidden; margin-top: 3rem;
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: calc(var(--radius) * 2); padding: 3.2rem 2.5rem; text-align: center;
+}
+.tool-card-glow {
+  position: absolute; top: -50%; left: 20%; right: 20%; height: 70%;
+  background: radial-gradient(ellipse at center, var(--rojo-suave), transparent 70%);
+  pointer-events: none;
+}
+.tool-card-body { position: relative; }
+.tool-card-badge {
+  display: inline-block; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em;
+  color: var(--rojo); border: 1px solid var(--line-rojo); border-radius: 999px;
+  padding: 0.4rem 0.85rem; margin-bottom: 1.4rem; text-transform: uppercase;
+}
+.tool-card-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0 0 0.8rem; color: var(--ink); }
+.tool-card-desc { color: var(--ink-soft); max-width: 46ch; margin: 0 auto 1.7rem; line-height: 1.6; }
+.tool-card-list {
+  list-style: none; padding: 0; margin: 0 auto 2rem; display: inline-flex;
+  flex-direction: column; gap: 0.6rem; text-align: left; color: var(--ink-soft); font-size: 0.95rem;
+}
+.tool-card-list li { position: relative; padding-left: 1.5rem; }
+.tool-card-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--rojo); font-weight: 700; }
+.tool-card-note { margin-top: 1rem; color: var(--ink-mute); font-size: 0.85rem; }
