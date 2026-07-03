@@ -969,3 +969,15 @@ body.consola-open { overflow: hidden; }
 .tool-card-list li { position: relative; padding-left: 1.5rem; }
 .tool-card-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--rojo); font-weight: 700; }
 .tool-card-note { margin-top: 1rem; color: var(--ink-mute); font-size: 0.85rem; }
+
+/* ─── VIDEO EXPLICATIVO (Herramienta) ─── */
+.tool-video { max-width: 760px; margin: 3rem auto 0; }
+.tool-video-el {
+  width: 100%; aspect-ratio: 16 / 9; display: block; background: #000;
+  border: 1px solid var(--line); border-radius: calc(var(--radius) * 2);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+.tool-video-cap {
+  margin-top: 0.9rem; text-align: center; color: var(--ink-mute);
+  font-size: 0.85rem; letter-spacing: 0.02em;
+}

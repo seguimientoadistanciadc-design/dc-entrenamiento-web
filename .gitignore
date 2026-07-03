@@ -3,3 +3,10 @@
 
 # Archivos fuente de herramientas (NO publicar): el del video tiene API key de ElevenLabs.
 *integrar*.html
+render/.env
+render/out/
+render/node_modules/
+
+# Carpeta de render completa (fuente/proyecto, puede tener .env con keys) y zips
+render/
+*.zip
