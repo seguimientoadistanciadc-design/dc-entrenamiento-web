@@ -981,3 +981,19 @@ body.consola-open { overflow: hidden; }
   margin-top: 0.9rem; text-align: center; color: var(--ink-mute);
   font-size: 0.85rem; letter-spacing: 0.02em;
 }
+
+/* ─── DESCUENTO DE BIENVENIDA ─── */
+.consola-discount {
+  margin: 0 0 1.5rem; padding: 0.95rem 1.15rem;
+  background: var(--rojo-suave); border: 1px solid var(--line-rojo);
+  border-radius: var(--radius); color: var(--ink);
+  font-size: 0.92rem; line-height: 1.5;
+}
+.consola-discount strong { color: var(--rojo); }
+.vol-price-strike {
+  color: var(--ink-mute); text-decoration: line-through;
+  font-size: 0.5em; margin-right: 0.5rem; font-weight: 500; vertical-align: middle;
+}
+.vol-discount-note {
+  color: var(--rojo); font-weight: 600; font-size: 0.85rem; margin: 0.4rem 0 0;
+}

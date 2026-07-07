@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=20260703" />
+  <link rel="stylesheet" href="styles.css?v=20260704" />
 </head>
 <body>
 
@@ -332,6 +332,7 @@
             <span class="vol-price-amount" data-vol-price data-price-amount>$399</span>
             <span class="vol-price-cur" data-price-cur>MXN</span>
           </div>
+          <p class="vol-discount-note" data-vol-discount-note hidden></p>
           <p class="vol-price-note">Pago único · Acceso de por vida</p>
           <button class="btn btn--primary btn--full vol-buy-btn" type="button" data-vol-buy="volumen-1">Comprar Volumen 1 →</button>
           <p class="vol-buy-sub">🔒 Pago seguro con Mercado Pago</p>
@@ -630,6 +631,7 @@
         </div>
         <button class="consola-close" type="button" data-consola-close aria-label="Cerrar">✕</button>
       </header>
+      <div class="consola-discount" data-discount-banner hidden></div>
       <div class="consola-body" data-consola-body>
         <!-- Contenido generado por main.js (estados: cargando / vacío / lista) -->
       </div>
@@ -657,6 +659,6 @@
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
   <script defer src="auth.js?v=20260624"></script>
-  <script defer src="main.js?v=20260702"></script>
+  <script defer src="main.js?v=20260704"></script>
 </body>
 </html>

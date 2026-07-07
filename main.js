@@ -567,6 +567,8 @@
   }
 
   function applyProduct(el, product) {
+    // Guardamos el precio base para que initDiscount pueda calcular el descuento.
+    if (product.price != null) el.dataset.basePrice = product.price;
     var amount = el.querySelector("[data-price-amount]");
     if (amount) {
       var f = formatMoney(product.price);
@@ -595,10 +597,82 @@
           var p = bySlug[el.getAttribute("data-product")];
           if (p) applyProduct(el, p);
         });
+        // Avisa a initDiscount que ya están los precios base cargados.
+        document.dispatchEvent(new CustomEvent("dc-catalog-ready"));
       })
       .catch(function () {
         // Backend caído: se mantienen los precios del HTML como respaldo.
       });
+  }
+
+  /* ─── DESCUENTO DE BIENVENIDA (banner + precio del e-book) ─── */
+  function initDiscount() {
+    function fmtDate(iso) {
+      try {
+        return new Date(iso).toLocaleDateString("es-MX", {
+          day: "numeric", month: "long", year: "numeric",
+        });
+      } catch (e) { return ""; }
+    }
+    function money(n) {
+      var cents = Math.round(n * 100) % 100 !== 0;
+      return "$" + n.toLocaleString("es-MX", {
+        minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: 2,
+      });
+    }
+    function applyEbook(pct) {
+      var block = document.querySelector('.vol-offer-price[data-product="volumen-1"]');
+      if (!block) return;
+      var amountEl = block.querySelector("[data-price-amount]");
+      if (!amountEl) return;
+      // Base: del dataset (catálogo) o del texto actual la primera vez.
+      if (!block.dataset.basePrice) {
+        var parsed = parseFloat((amountEl.textContent || "").replace(/[^0-9.]/g, ""));
+        if (parsed) block.dataset.basePrice = String(parsed);
+      }
+      var base = parseFloat(block.dataset.basePrice);
+      if (!base) return;
+      var strike = block.querySelector(".vol-price-strike");
+      var note = block.parentNode.querySelector("[data-vol-discount-note]");
+      if (pct > 0) {
+        var discounted = Math.round(base * (100 - pct)) / 100;
+        if (!strike) {
+          strike = document.createElement("span");
+          strike.className = "vol-price-strike";
+          block.insertBefore(strike, amountEl);
+        }
+        strike.textContent = money(base);
+        amountEl.textContent = money(discounted);
+        if (note) { note.textContent = "🎟️ " + pct + "% de descuento aplicado"; note.hidden = false; }
+      } else {
+        if (strike) strike.remove();
+        amountEl.textContent = money(base);
+        if (note) note.hidden = true;
+      }
+    }
+    function apply(user) {
+      var pct = user && user.active_discount ? user.active_discount : 0;
+      var banner = document.querySelector("[data-discount-banner]");
+      if (banner) {
+        if (pct > 0) {
+          var hasta = user.discount_expires_at ? " hasta el " + fmtDate(user.discount_expires_at) : "";
+          banner.innerHTML =
+            "🎟️ Tienes <strong>" + pct + "% de descuento</strong> en todos los servicios " +
+            "(e-books, asesorías y mentorías)" + hasta + ".";
+          banner.hidden = false;
+        } else {
+          banner.hidden = true;
+        }
+      }
+      applyEbook(pct);
+    }
+    document.addEventListener("dc-auth-change", function (e) {
+      apply(e.detail && e.detail.user);
+    });
+    document.addEventListener("dc-catalog-ready", function () {
+      apply(window.DCAuth && window.DCAuth.getUser ? window.DCAuth.getUser() : null);
+    });
+    if (window.DCAuth && window.DCAuth.getUser) apply(window.DCAuth.getUser());
   }
 
   /* ─── HERRAMIENTA GRATUITA (candado por registro) ─── */
@@ -656,6 +730,7 @@
     safe(initPagoReturn, "initPagoReturn");
     safe(initConsola, "initConsola");
     safe(initToolGate, "initToolGate");
+    safe(initDiscount, "initDiscount");
   }
 
   if (document.readyState === "loading") {
