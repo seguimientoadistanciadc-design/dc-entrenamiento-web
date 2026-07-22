@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=20260704" />
+  <link rel="stylesheet" href="styles.css?v=20260722e" />
 </head>
 <body>
 
@@ -71,9 +71,11 @@
       <div class="hero-img-tint"></div>
     </div>
     <div class="hero-grain" aria-hidden="true"></div>
+    <div class="orb-bg hero-orb hero-orb--a" aria-hidden="true"></div>
+    <div class="orb-bg hero-orb hero-orb--b" aria-hidden="true"></div>
 
     <div class="hero-content">
-      <p class="hero-kicker"><span class="kicker-dot"></span>Entrenamiento · Hipertrofia · Evidencia</p>
+      <p class="hero-kicker badge-pill"><span class="kicker-dot"></span>Entrenamiento · Hipertrofia · Evidencia</p>
       <h1 class="hero-title">
         <span class="hero-title-line">Desarrollo muscular</span>
         <span class="hero-title-line hero-title-line--accent">con fundamento</span>
@@ -86,6 +88,14 @@
       </div>
     </div>
 
+    <div class="hero-float-card glass-panel" aria-hidden="true">
+      <span class="hero-float-icon">✓</span>
+      <div>
+        <strong>200+ atletas</strong>
+        <small>asesorados · 98% satisfacción</small>
+      </div>
+    </div>
+
     <div class="hero-scroll-hint" aria-hidden="true">
       <span>Continuar</span>
       <div class="hero-scroll-line"></div>
@@ -94,20 +104,25 @@
 
   <!-- ─── STATS ─── -->
   <section class="stats" aria-label="Indicadores">
+    <div class="orb-bg stats-orb" aria-hidden="true"></div>
     <div class="stats-grid">
-      <div class="stat reveal" data-reveal>
+      <div class="stat glass-panel reveal" data-reveal>
+        <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
         <span class="stat-num" data-count-to="200" data-suffix="+">200+</span>
         <span class="stat-label">Atletas asesorados</span>
       </div>
-      <div class="stat reveal" data-reveal>
+      <div class="stat glass-panel reveal" data-reveal>
+        <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
         <span class="stat-num" data-count-to="5" data-suffix=" años">5 años</span>
         <span class="stat-label">De experiencia</span>
       </div>
-      <div class="stat reveal" data-reveal>
+      <div class="stat glass-panel reveal" data-reveal>
+        <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
         <span class="stat-num" data-count-to="98" data-suffix="%">98%</span>
         <span class="stat-label">Índice de satisfacción</span>
       </div>
-      <div class="stat reveal" data-reveal>
+      <div class="stat glass-panel reveal" data-reveal>
+        <span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></span>
         <span class="stat-num instagram-followers">—</span>
         <span class="stat-label">Seguidores en Instagram</span>
       </div>
@@ -116,6 +131,7 @@
 
   <!-- ─── SOBRE ─── -->
   <section class="sobre" id="sobre" aria-labelledby="sobre-heading">
+    <div class="orb-bg sobre-orb" aria-hidden="true"></div>
     <div class="sobre-inner">
       <div class="sobre-media reveal" data-reveal>
         <img src="assets/img/diego-1.jpg" alt="Diego Cassas — entrenador especialista en hipertrofia" class="sobre-img" loading="lazy" />
@@ -251,6 +267,7 @@
 
   <!-- ─── PROCESO ─── -->
   <section class="proceso" aria-labelledby="proceso-heading">
+    <div class="orb-bg proceso-orb" aria-hidden="true"></div>
     <div class="proceso-inner">
       <div class="section-header reveal" data-reveal>
         <p class="section-kicker">03 — Metodología de trabajo</p>
@@ -280,6 +297,7 @@
 
   <!-- ─── RECURSOS ─── -->
   <section class="volumen" id="recursos" aria-labelledby="volumen-heading">
+    <div class="orb-bg volumen-orb" aria-hidden="true"></div>
     <div class="volumen-inner">
       <div class="section-header reveal" data-reveal>
         <p class="section-kicker">04 — Volumen 1</p>
@@ -460,6 +478,7 @@
 
   <!-- ─── CONTACTO ─── -->
   <section class="contacto" id="contacto" aria-labelledby="contacto-heading">
+    <div class="orb-bg contacto-orb" aria-hidden="true"></div>
     <div class="contacto-inner">
       <div class="contacto-text reveal" data-reveal>
         <p class="section-kicker">06 — Contacto</p>
