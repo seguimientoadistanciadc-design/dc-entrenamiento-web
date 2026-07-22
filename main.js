@@ -234,7 +234,7 @@
       } else {
         btn.disabled = false;
         if (window.DCAuth && window.DCAuth.toast) {
-          window.DCAuth.toast("No se pudo enviar tu solicitud. Escríbenos a seguimientoadistanciadc@gmail.com o inténtalo más tarde.");
+          window.DCAuth.toast("No se pudo enviar tu solicitud. Escríbenos a contacto@dcentrenamiento.com o inténtalo más tarde.");
         }
       }
     });
