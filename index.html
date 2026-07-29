@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=20260722e" />
+  <link rel="stylesheet" href="styles.css?v=20260729g" />
 </head>
 <body>
 
@@ -40,6 +40,7 @@
           <div class="nav-account-dropdown" data-account-dropdown role="menu">
             <p class="nav-account-email" data-user-email></p>
             <a href="#" class="nav-account-item" data-nav-consola role="menuitem">Mi Consola</a>
+            <a href="#" class="nav-account-item" data-auth-change role="menuitem">Cambiar contraseña</a>
             <button class="nav-account-item nav-account-item--logout" type="button" data-auth-logout role="menuitem">Cerrar sesión</button>
           </div>
         </div>
@@ -612,6 +613,7 @@
           <span class="auth-submit-text">Iniciar sesión</span>
           <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
         </button>
+        <p class="auth-switch"><button type="button" class="auth-link" data-auth-tab="forgot">¿Olvidaste tu contraseña?</button></p>
         <p class="auth-switch">¿No tienes cuenta? <button type="button" class="auth-link" data-auth-tab="register">Créala aquí</button></p>
       </form>
 
@@ -635,6 +637,60 @@
           <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
         </button>
         <p class="auth-switch">¿Ya tienes cuenta? <button type="button" class="auth-link" data-auth-tab="login">Inicia sesión</button></p>
+      </form>
+
+      <!-- RECUPERAR (olvidé mi contraseña) -->
+      <form class="auth-form" id="forgot-form" data-auth-panel="forgot" novalidate hidden>
+        <p class="auth-panel-intro">Escribe tu correo y te enviaremos un enlace para crear una nueva contraseña.</p>
+        <div class="form-group">
+          <label for="forgot-email">Correo electrónico</label>
+          <input type="email" id="forgot-email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
+        </div>
+        <p class="auth-error" data-auth-error hidden></p>
+        <p class="auth-ok" data-auth-ok hidden></p>
+        <button type="submit" class="btn btn--primary btn--full auth-submit">
+          <span class="auth-submit-text">Enviar enlace</span>
+          <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
+        </button>
+        <p class="auth-switch"><button type="button" class="auth-link" data-auth-tab="login">← Volver a iniciar sesión</button></p>
+      </form>
+
+      <!-- RESTABLECER (llegó desde el enlace del correo: ?reset=token) -->
+      <form class="auth-form" id="reset-form" data-auth-panel="reset" novalidate hidden>
+        <p class="auth-panel-intro">Crea tu nueva contraseña.</p>
+        <div class="form-group">
+          <label for="reset-password">Nueva contraseña</label>
+          <input type="password" id="reset-password" name="new_password" placeholder="Mínimo 8 caracteres" required minlength="8" maxlength="72" autocomplete="new-password" />
+        </div>
+        <div class="form-group">
+          <label for="reset-password2">Confirmar contraseña</label>
+          <input type="password" id="reset-password2" name="new_password2" placeholder="Repite la contraseña" required minlength="8" maxlength="72" autocomplete="new-password" />
+        </div>
+        <p class="auth-error" data-auth-error hidden></p>
+        <p class="auth-ok" data-auth-ok hidden></p>
+        <button type="submit" class="btn btn--primary btn--full auth-submit">
+          <span class="auth-submit-text">Guardar contraseña</span>
+          <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
+        </button>
+      </form>
+
+      <!-- CAMBIAR (usuario con sesión, desde el menú de cuenta) -->
+      <form class="auth-form" id="change-form" data-auth-panel="change" novalidate hidden>
+        <p class="auth-panel-intro">Cambia tu contraseña.</p>
+        <div class="form-group">
+          <label for="change-current">Contraseña actual</label>
+          <input type="password" id="change-current" name="current_password" placeholder="••••••••" required autocomplete="current-password" />
+        </div>
+        <div class="form-group">
+          <label for="change-new">Nueva contraseña</label>
+          <input type="password" id="change-new" name="new_password" placeholder="Mínimo 8 caracteres" required minlength="8" maxlength="72" autocomplete="new-password" />
+        </div>
+        <p class="auth-error" data-auth-error hidden></p>
+        <p class="auth-ok" data-auth-ok hidden></p>
+        <button type="submit" class="btn btn--primary btn--full auth-submit">
+          <span class="auth-submit-text">Guardar contraseña</span>
+          <span class="auth-submit-loading" aria-hidden="true">Procesando…</span>
+        </button>
       </form>
     </div>
   </div>
@@ -677,7 +733,7 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="auth.js?v=20260624"></script>
+  <script defer src="auth.js?v=20260729g"></script>
   <script defer src="main.js?v=20260729f"></script>
 </body>
 </html>

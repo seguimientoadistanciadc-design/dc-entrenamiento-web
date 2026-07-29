@@ -14,6 +14,7 @@
 
   var TOKEN_KEY = "dc_token";
   var currentUser = null;
+  var resetToken = null; // token del enlace ?reset= (recuperar contraseña)
 
   /* ─── Token en localStorage ─── */
   function getToken() { try { return localStorage.getItem(TOKEN_KEY); } catch (e) { return null; } }
@@ -79,6 +80,23 @@
     if (!res.ok) return null;
     return res.json().catch(function () { return null; });
   }
+
+  async function apiJson(path, body, authed) {
+    var res, headers = { "Content-Type": "application/json" };
+    if (authed) { var t = getToken(); if (t) headers.Authorization = "Bearer " + t; }
+    try {
+      res = await fetch(API_BASE + path, { method: "POST", headers: headers, body: JSON.stringify(body) });
+    } catch (e) { throw new ApiError(0, NETWORK_MSG); }
+    var data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      var msg = typeof data.detail === "string" ? data.detail : "No se pudo completar la solicitud.";
+      throw new ApiError(res.status, msg);
+    }
+    return data;
+  }
+  function apiForgot(email) { return apiJson("/auth/forgot-password", { email: email }, false); }
+  function apiReset(token, newPassword) { return apiJson("/auth/reset-password", { token: token, new_password: newPassword }, false); }
+  function apiChangePassword(current, next) { return apiJson("/auth/change-password", { current_password: current, new_password: next }, true); }
 
   // Helper reutilizable para fases futuras: peticiones con el token adjunto.
   function fetchAuthed(path, opts) {
@@ -166,6 +184,10 @@
     modal.querySelectorAll(".auth-form").forEach(function (f) {
       f.hidden = f.getAttribute("data-auth-panel") !== tab;
     });
+    // Las pestañas login/registro solo aplican a esos dos paneles.
+    var isMain = tab === "login" || tab === "register";
+    var tabsBar = modal.querySelector(".auth-tabs");
+    if (tabsBar) tabsBar.style.display = isMain ? "" : "none";
     clearErrors();
   }
 
@@ -179,6 +201,15 @@
     document.querySelectorAll("[data-auth-error]").forEach(function (el) {
       el.hidden = true; el.textContent = "";
     });
+    document.querySelectorAll("[data-auth-ok]").forEach(function (el) {
+      el.hidden = true; el.textContent = "";
+    });
+  }
+  function showOk(form, msg) {
+    var el = form.querySelector("[data-auth-ok]");
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = false;
   }
   function setLoading(form, on) {
     var btn = form.querySelector(".auth-submit");
@@ -242,6 +273,67 @@
     }
   }
 
+  async function handleForgot(e) {
+    e.preventDefault();
+    var form = e.currentTarget;
+    clearErrors();
+    if (!form.reportValidity()) return;
+    var email = form.querySelector('[name="email"]').value.trim();
+    setLoading(form, true);
+    try {
+      await apiForgot(email);
+      showOk(form, "Si el correo está registrado, te enviamos un enlace. Revisa tu bandeja (y la carpeta de spam).");
+      form.reset();
+    } catch (err) {
+      showError(form, err.message || "No se pudo procesar la solicitud.");
+    } finally {
+      setLoading(form, false);
+    }
+  }
+
+  async function handleReset(e) {
+    e.preventDefault();
+    var form = e.currentTarget;
+    clearErrors();
+    if (!form.reportValidity()) return;
+    var p1 = form.querySelector('[name="new_password"]').value;
+    var p2 = form.querySelector('[name="new_password2"]').value;
+    if (p1 !== p2) { showError(form, "Las contraseñas no coinciden."); return; }
+    if (!resetToken) { showError(form, "El enlace no es válido o ya venció. Solicita uno nuevo."); return; }
+    setLoading(form, true);
+    try {
+      await apiReset(resetToken, p1);
+      form.reset();
+      resetToken = null;
+      switchTab("login");
+      toast("¡Listo! Tu contraseña se actualizó. Inicia sesión.");
+    } catch (err) {
+      showError(form, err.message || "No se pudo restablecer la contraseña.");
+    } finally {
+      setLoading(form, false);
+    }
+  }
+
+  async function handleChange(e) {
+    e.preventDefault();
+    var form = e.currentTarget;
+    clearErrors();
+    if (!form.reportValidity()) return;
+    var current = form.querySelector('[name="current_password"]').value;
+    var next = form.querySelector('[name="new_password"]').value;
+    setLoading(form, true);
+    try {
+      await apiChangePassword(current, next);
+      form.reset();
+      closeModal();
+      toast("Tu contraseña se actualizó correctamente.");
+    } catch (err) {
+      showError(form, err.message || "No se pudo cambiar la contraseña.");
+    } finally {
+      setLoading(form, false);
+    }
+  }
+
   function logout() {
     clearToken();
     renderAuthState(null);
@@ -266,6 +358,10 @@
 
       var logoutBtn = e.target.closest("[data-auth-logout]");
       if (logoutBtn) { e.preventDefault(); if (acc) acc.classList.remove("is-open"); logout(); return; }
+
+      // "Cambiar contraseña" (menú de cuenta, usuario con sesión).
+      var changeBtn = e.target.closest("[data-auth-change]");
+      if (changeBtn) { e.preventDefault(); if (acc) acc.classList.remove("is-open"); openModal("change"); return; }
 
       // Menú desplegable de cuenta.
       var toggle = e.target.closest("[data-account-toggle]");
@@ -302,8 +398,24 @@
 
     var loginForm = document.getElementById("login-form");
     var registerForm = document.getElementById("register-form");
+    var forgotForm = document.getElementById("forgot-form");
+    var resetForm = document.getElementById("reset-form");
+    var changeForm = document.getElementById("change-form");
     if (loginForm) loginForm.addEventListener("submit", handleLogin);
     if (registerForm) registerForm.addEventListener("submit", handleRegister);
+    if (forgotForm) forgotForm.addEventListener("submit", handleForgot);
+    if (resetForm) resetForm.addEventListener("submit", handleReset);
+    if (changeForm) changeForm.addEventListener("submit", handleChange);
+  }
+
+  // Si el usuario llega desde el enlace del correo (…/?reset=TOKEN), abre el
+  // panel para crear una nueva contraseña y limpia el token de la URL.
+  function checkResetLink() {
+    var m = location.search.match(/[?&]reset=([^&]+)/);
+    if (!m) return;
+    resetToken = decodeURIComponent(m[1]);
+    try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
+    openModal("reset");
   }
 
   /* ─── Arranque: restaura sesión si hay token ─── */
@@ -315,6 +427,7 @@
     } else {
       renderAuthState(null);
     }
+    checkResetLink();
   }
 
   if (document.readyState === "loading") {
