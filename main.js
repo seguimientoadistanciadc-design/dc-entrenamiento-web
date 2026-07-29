@@ -515,7 +515,26 @@
       body.innerHTML = `<div class="consola-grid">${cards}</div>`;
     }
 
+    // Navegadores internos de apps (Instagram, Facebook, etc.) NO permiten
+    // descargar archivos (fallan con "No se puede cargar la página"). En esos
+    // casos guiamos al cliente a abrir la página en su navegador real.
+    function isInAppBrowser() {
+      const ua = navigator.userAgent || "";
+      return /Instagram|FBAN|FBAV|FB_IAB|FBIOS|Line\/|Twitter|TikTok|musical_ly|Snapchat|Pinterest|MicroMessenger/i.test(ua);
+    }
+
     async function downloadItem(id, slug, btn) {
+      if (isInAppBrowser()) {
+        alert(
+          "Estás viendo la página dentro de otra app (por ejemplo Instagram), que no permite descargar archivos.\n\n" +
+          "Para descargar tus guías:\n" +
+          "1. Toca el menú (⋮ o ⋯) arriba a la derecha.\n" +
+          "2. Elige \"Abrir en el navegador\" (Chrome o Safari).\n" +
+          "3. Inicia sesión con tu correo y descarga desde \"Mi Consola\".\n\n" +
+          "Si tienes cualquier problema, escríbenos a contacto@dcentrenamiento.com y te ayudamos."
+        );
+        return;
+      }
       const orig = btn.textContent;
       btn.disabled = true;
       btn.textContent = "Descargando…";
