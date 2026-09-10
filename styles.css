@@ -672,13 +672,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .form-group select option { background: var(--bg-3); }
 .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
 
-#form-submit { position: relative; overflow: clip; }
-#form-submit .btn-loading,
-#form-submit .btn-success { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: inherit; opacity: 0; transition: opacity 0.3s; }
-#form-submit.is-loading .btn-text { opacity: 0; }
-#form-submit.is-loading .btn-loading { opacity: 1; }
-#form-submit.is-success .btn-text { opacity: 0; }
-#form-submit.is-success .btn-success { opacity: 1; }
+#form-submit, #entrevista-submit { position: relative; overflow: clip; }
+#form-submit .btn-loading, #entrevista-submit .btn-loading,
+#form-submit .btn-success, #entrevista-submit .btn-success { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: inherit; opacity: 0; transition: opacity 0.3s; }
+#form-submit.is-loading .btn-text, #entrevista-submit.is-loading .btn-text { opacity: 0; }
+#form-submit.is-loading .btn-loading, #entrevista-submit.is-loading .btn-loading { opacity: 1; }
+#form-submit.is-success .btn-text, #entrevista-submit.is-success .btn-text { opacity: 0; }
+#form-submit.is-success .btn-success, #entrevista-submit.is-success .btn-success { opacity: 1; }
 .form-note { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gris); text-align: center; letter-spacing: 0.06em; }
 
 /* ─── FOOTER ─── */
@@ -691,7 +691,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 2.5rem;
   max-width: 1280px; margin: 0 auto 2rem;
 }
+.footer-inner--standalone { grid-template-columns: 1.2fr 1fr; }
 .footer-logo-img { height: 36px; width: auto; margin-bottom: 1rem; }
+.standalone-spacer { height: 1rem; }
 .footer-brand p { color: var(--gris-claro); font-size: 0.85rem; line-height: 1.6; font-weight: 300; }
 .footer-nav, .footer-contact { display: flex; flex-direction: column; gap: 0.55rem; }
 .footer-nav strong, .footer-contact strong {
@@ -1142,4 +1144,183 @@ body.consola-open { overflow: hidden; }
 }
 .vol-discount-note {
   color: var(--rojo); font-weight: 600; font-size: 0.85rem; margin: 0.4rem 0 0;
+}
+
+/* ─── PROCESO: CTA ─── */
+.proceso-cta { display: flex; justify-content: center; margin-top: 3.5rem; position: relative; z-index: 1; }
+
+/* ─── ENTREVISTA INICIAL ─── */
+.entrevista { padding: 7rem 5vw; border-top: 1px solid var(--line); position: relative; overflow: clip; }
+.entrevista-orb { top: 10%; left: -8%; width: 560px; height: 560px; background: radial-gradient(circle, var(--orb-rojo) 0%, transparent 70%); opacity: 0.35; }
+.entrevista-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+.entrevista-header { text-align: center; margin: 0 auto 3.5rem; display: flex; flex-direction: column; align-items: center; }
+.entrevista-header .section-sub { max-width: 60ch; }
+.entrevista-honey { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.mform-plan-banner {
+  display: flex; align-items: flex-start; gap: 0.9rem; text-align: left;
+  margin-top: 2rem; padding: 1.1rem 1.3rem; width: 100%;
+  background: var(--rojo-suave); border: 1px solid var(--line-rojo); border-radius: var(--radius);
+}
+.mform-plan-banner[hidden] { display: none; }
+.mform-plan-banner-icon {
+  flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--rojo); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700;
+}
+.mform-plan-banner strong { display: block; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.3rem; }
+.mform-plan-banner small { display: block; font-size: 0.82rem; color: var(--ink-soft); line-height: 1.6; font-weight: 300; }
+
+/* ── mform: sistema de componentes de la entrevista ── */
+.mform { display: flex; flex-direction: column; }
+
+.mform-progress { margin-bottom: 2rem; position: sticky; top: 76px; z-index: 5; background: var(--bg); padding: 0.6rem 0; }
+.mform-progress-track { height: 7px; background: var(--bg-3); border-radius: 99px; overflow: clip; border: 1px solid var(--line); }
+.mform-progress-fill { height: 100%; width: 0%; background: var(--rojo); border-radius: 99px; transition: width 0.4s var(--ease-out); }
+.mform-progress-label { display: block; margin-top: 0.55rem; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gris-claro); text-align: right; }
+.mform-progress-label #mform-progress-pct { color: var(--rojo); font-weight: 700; }
+
+.mform-section { border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); margin-bottom: 1rem; overflow: clip; }
+.mform-section-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.3rem 1.5rem; text-align: left; }
+.mform-section-headtext { display: flex; flex-direction: column; gap: 0.22rem; }
+.mform-section-title { font-family: 'Libre Baskerville', serif; font-size: 1.08rem; font-weight: 700; color: var(--ink); }
+.mform-section-sub { font-size: 0.79rem; color: var(--gris-claro); font-weight: 300; }
+.mform-section-chevron { color: var(--rojo); font-size: 0.85rem; flex-shrink: 0; transition: transform 0.25s var(--ease-out); }
+.mform-section-head[aria-expanded="true"] .mform-section-chevron { transform: rotate(180deg); }
+.mform-section-body { padding: 1.5rem; border-top: 1px solid var(--line); }
+.mform-section-body[hidden] { display: none; }
+
+.mform-field { margin-bottom: 1.6rem; }
+.mform-field:last-child { margin-bottom: 0; }
+.mform-field-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gris-claro); margin-bottom: 0.65rem; }
+.mform-input {
+  width: 100%; background: rgba(0,0,0,0.22); border: 1px solid var(--glass-border);
+  border-radius: var(--radius); color: var(--ink);
+  font-family: 'Source Sans 3', sans-serif; font-size: 0.95rem; font-weight: 300;
+  padding: 0.82rem 1rem; transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+}
+.mform-input:focus { border-color: var(--rojo); box-shadow: 0 0 0 3px rgba(200,16,46,0.1); }
+textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
+.mform-help { font-size: 0.8rem; color: var(--gris-claro); line-height: 1.65; font-weight: 300; margin-top: 0.65rem; }
+
+/* toggle segmentado (Sí/No, 2-3 opciones) */
+.mform-toggle { display: flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: clip; position: relative; }
+.mform-toggle-input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.mform-toggle-label {
+  flex: 1; text-align: center; padding: 0.78rem 0.5rem; font-size: 0.85rem; font-weight: 600;
+  color: var(--ink-soft); cursor: pointer; border-right: 1px solid var(--line);
+  transition: background 0.2s, color 0.2s;
+}
+.mform-toggle-label:last-of-type { border-right: none; }
+.mform-toggle-input:checked + .mform-toggle-label { background: var(--rojo); color: #fff; }
+.mform-toggle-input:focus-visible + .mform-toggle-label { outline: 2px solid var(--rojo); outline-offset: -2px; }
+.mform-toggle--3 .mform-toggle-label { font-size: 0.76rem; padding: 0.78rem 0.3rem; }
+
+/* lista de tarjetas radio */
+.mform-radio-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.mform-radio-card {
+  position: relative; display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.75rem 1rem; background: var(--bg-3); border: 1px solid var(--line);
+  border-radius: var(--radius); cursor: pointer; font-size: 0.88rem; color: var(--ink-soft);
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.mform-radio-card input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mform-radio-card:has(input:checked) { border-color: var(--rojo); background: var(--rojo-suave); color: var(--ink); }
+.mform-radio-card small { display: block; color: var(--gris-claro); font-size: 0.76rem; font-weight: 400; margin-top: 0.15rem; }
+
+/* stepper numérico (año, peso, estatura) */
+.mform-stepper { display: flex; align-items: center; gap: 0.6rem; }
+.mform-stepper-btn {
+  width: 42px; height: 42px; flex-shrink: 0; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-3); color: var(--ink); font-size: 1.1rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s;
+}
+.mform-stepper-btn:hover { border-color: var(--rojo); color: var(--rojo); }
+.mform-stepper-input {
+  flex: 1; text-align: center; background: var(--bg-3); border: 1px solid var(--line);
+  border-radius: var(--radius); color: var(--ink); font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem; padding: 0.78rem 0.5rem; outline: none;
+}
+.mform-stepper-input:focus { border-color: var(--rojo); }
+.mform-stepper-input::-webkit-outer-spin-button, .mform-stepper-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.mform-stepper-unit { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--rojo); flex-shrink: 0; }
+
+/* escala 1-5 / emoji */
+.mform-scale { display: flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: clip; position: relative; }
+.mform-scale input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mform-scale label {
+  flex: 1; text-align: center; padding: 0.85rem 0.4rem; font-family: 'JetBrains Mono', monospace;
+  font-weight: 600; color: var(--ink-soft); cursor: pointer; border-right: 1px solid var(--line);
+  transition: background 0.2s, color 0.2s;
+}
+.mform-scale label:last-of-type { border-right: none; }
+.mform-scale input:checked + label { background: var(--rojo); color: #fff; }
+.mform-scale--emoji label { font-size: 1.25rem; padding: 0.6rem 0.4rem; }
+.mform-scale-caption { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--rojo); font-weight: 600; margin-top: 0.6rem; letter-spacing: 0.04em; min-height: 1em; }
+
+/* slider (calidad de sueño) */
+.mform-slider-scale { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--gris); margin-bottom: 0.4rem; }
+.mform-slider input[type="range"] { width: 100%; accent-color: var(--rojo); height: 6px; }
+.mform-slider-caption { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--rojo); margin-top: 0.6rem; font-weight: 600; letter-spacing: 0.04em; }
+
+/* checklist de grupos musculares / zonas */
+.mform-checklist { display: flex; flex-direction: column; gap: 0.4rem; }
+.mform-checklist-group-title { font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gris); margin: 0.9rem 0 0.1rem; }
+.mform-checklist-group-title:first-child { margin-top: 0; }
+.mform-checklist--compact { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.45rem; }
+.mform-check {
+  position: relative; display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.6rem 0.85rem; background: var(--bg-3); border: 1px solid var(--line);
+  border-radius: 6px; font-size: 0.85rem; color: var(--ink-soft); cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.mform-check input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mform-check:has(input:checked) { border-color: var(--rojo); background: var(--rojo-suave); color: var(--ink); }
+.mform-check--block { margin-top: 0.9rem; }
+
+/* selector de días y tiempo disponible */
+.mform-days { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0.8rem 0 1rem; }
+.mform-day {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  padding: 0.75rem 0.6rem; background: var(--bg-3); border: 1px solid var(--line);
+  border-radius: var(--radius); cursor: pointer; min-width: 74px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.mform-day-check { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.mform-day:has(.mform-day-check:checked) { border-color: var(--rojo); background: var(--rojo-suave); }
+.mform-day-name { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft); text-transform: uppercase; }
+.mform-day-time {
+  width: 52px; text-align: center; background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 4px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem; padding: 0.3rem; opacity: 0.4; transition: opacity 0.2s, color 0.2s; outline: none;
+}
+.mform-day:has(.mform-day-check:checked) .mform-day-time { opacity: 1; color: var(--ink); }
+.mform-day-time:disabled { pointer-events: none; }
+.mform-day-unit { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--gris); }
+.mform-days-total { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.5rem; }
+.mform-days-total strong { color: var(--rojo); }
+
+/* bloques condicionales revelados por CSS :has() */
+.mform-cond-group .mform-cond { display: none; padding-top: 0.3rem; }
+.mform-cond-group:has(#e-espec-si:checked) .mform-cond[data-cond-if="e-espec-si"] { display: block; }
+.mform-cond-group:has(#e-dias-si:checked) .mform-cond[data-cond-if="e-dias-si"] { display: block; }
+.mform-cond-group:has(#e-ejadic-si:checked) .mform-cond[data-cond-if="e-ejadic-si"] { display: block; }
+.mform-cond-group:has(#e-les-si:checked) .mform-cond[data-cond-if="e-les-si"] { display: block; }
+
+.mform-final { margin-top: 1.5rem; }
+.mform-final.form-note { margin-top: 0.9rem; }
+
+@media (max-width: 640px) {
+  .mform-progress { top: 0; }
+  .mform-checklist--compact { grid-template-columns: 1fr; }
+}
+
+/* ─── NAV MÍNIMO (página independiente de entrevista, sin menú hamburguesa) ─── */
+.nav--standalone .nav-links { gap: 1rem; }
+@media (max-width: 768px) {
+  .nav--standalone .nav-links { display: flex; gap: 0.5rem; }
+  .nav--standalone .nav-link { font-size: 0.62rem; padding: 0.3rem 0; white-space: nowrap; }
+  .nav--standalone .nav-link--cta { padding: 0.32rem 0.6rem; }
+}
+@media (max-width: 380px) {
+  .nav--standalone .nav-link:not(.nav-link--cta) { display: none; }
 }

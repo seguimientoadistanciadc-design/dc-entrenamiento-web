@@ -5,6 +5,249 @@
     try { fn(); } catch (e) { console.warn("[" + name + "]", e); }
   }
 
+  /* ─── ENTREVISTA: PLAN PRESELECCIONADO (?plan=) ─── */
+  function initEntrevistaPlanParam() {
+    const PLAN_MAP = {
+      "plan-4": "Plan de entrenamiento — 4 semanas",
+      "plan-12": "Plan de entrenamiento — 12 semanas",
+      "mentoria": "Mentoría profesional"
+    };
+    const form = document.getElementById("entrevista-form");
+    const banner = document.getElementById("mform-plan-banner");
+    const bannerName = document.getElementById("mform-plan-banner-name");
+    if (!form || !banner || !bannerName) return;
+
+    const slug = new URLSearchParams(location.search).get("plan");
+    const label = PLAN_MAP[slug];
+    if (!label) return;
+
+    const radio = form.querySelector('input[name="servicio"][value="' + slug + '"]');
+    if (radio) {
+      radio.checked = true;
+      radio.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    bannerName.textContent = label;
+    banner.hidden = false;
+  }
+
+  /* ─── ENTREVISTA: ACORDEÓN DE SECCIONES ─── */
+  function initEntrevistaAccordion() {
+    document.querySelectorAll(".mform-section").forEach(section => {
+      const head = section.querySelector(".mform-section-head");
+      const body = section.querySelector(".mform-section-body");
+      if (!head || !body) return;
+      if (head.getAttribute("aria-expanded") === "false") body.hidden = true;
+      head.addEventListener("click", () => {
+        const expanded = head.getAttribute("aria-expanded") === "true";
+        head.setAttribute("aria-expanded", String(!expanded));
+        body.hidden = expanded;
+      });
+    });
+  }
+
+  /* ─── ENTREVISTA: STEPPERS NUMÉRICOS ─── */
+  function initEntrevistaSteppers() {
+    document.querySelectorAll(".mform-stepper-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const input = btn.parentElement.querySelector(".mform-stepper-input");
+        if (!input) return;
+        btn.dataset.step === "up" ? input.stepUp() : input.stepDown();
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+  }
+
+  /* ─── ENTREVISTA: SELECTOR DE DÍAS Y TIEMPO ─── */
+  function initEntrevistaDays() {
+    const wrap = document.getElementById("mform-days");
+    const totalEl = document.getElementById("mform-days-total-val");
+    if (!wrap || !totalEl) return;
+
+    function syncDay(day) {
+      if (!day) return;
+      const check = day.querySelector(".mform-day-check");
+      const time = day.querySelector(".mform-day-time");
+      if (!check || !time) return;
+      time.disabled = !check.checked;
+    }
+    function updateTotal() {
+      let totalMin = 0;
+      wrap.querySelectorAll(".mform-day").forEach(day => {
+        const check = day.querySelector(".mform-day-check");
+        const time = day.querySelector(".mform-day-time");
+        if (check && check.checked && time) totalMin += Number(time.value) || 0;
+      });
+      totalEl.textContent = Math.floor(totalMin / 60) + "h " + (totalMin % 60) + "m";
+    }
+
+    wrap.querySelectorAll(".mform-day").forEach(syncDay);
+    updateTotal();
+
+    wrap.addEventListener("change", e => {
+      if (e.target.classList.contains("mform-day-check")) syncDay(e.target.closest(".mform-day"));
+      updateTotal();
+    });
+    wrap.addEventListener("input", e => {
+      if (e.target.classList.contains("mform-day-time")) updateTotal();
+    });
+  }
+
+  /* ─── ENTREVISTA: ESCALAS Y SLIDER ─── */
+  function initEntrevistaScales() {
+    document.querySelectorAll(".mform-scale[data-labels]").forEach(scale => {
+      const labels = scale.getAttribute("data-labels").split(",");
+      const caption = scale.nextElementSibling && scale.nextElementSibling.classList.contains("mform-scale-caption")
+        ? scale.nextElementSibling : null;
+      function sync() {
+        const checked = scale.querySelector("input:checked");
+        if (caption) caption.textContent = checked ? (labels[Number(checked.value) - 1] || "") : "";
+      }
+      scale.addEventListener("change", sync);
+      sync();
+    });
+
+    const sleepInput = document.getElementById("e-sueno");
+    const sleepCaption = document.getElementById("e-sueno-caption");
+    if (sleepInput && sleepCaption) {
+      const sleepLabels = ["Muy mala", "Muy mala", "Muy mala", "Mala", "Mala", "Regular", "Regular", "Buena", "Buena", "Excelente", "Excelente"];
+      function syncSleep() { sleepCaption.textContent = sleepLabels[Number(sleepInput.value)] || ""; }
+      sleepInput.addEventListener("input", syncSleep);
+      syncSleep();
+    }
+  }
+
+  /* ─── ENTREVISTA: BARRA DE PROGRESO ─── */
+  function initEntrevistaProgress() {
+    const form = document.getElementById("entrevista-form");
+    const fill = document.getElementById("mform-progress-fill");
+    const pct = document.getElementById("mform-progress-pct");
+    if (!form || !fill || !pct) return;
+
+    function isFilled(field) {
+      const radios = field.querySelectorAll('input[type="radio"]');
+      if (radios.length) return Array.from(radios).some(r => r.checked);
+      const checkboxes = field.querySelectorAll('input[type="checkbox"]');
+      if (checkboxes.length) return Array.from(checkboxes).some(c => c.checked);
+      if (field.querySelector('input[type="range"], input[type="number"]')) return true;
+      const select = field.querySelector("select");
+      if (select) return select.value !== "";
+      const textish = field.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
+      if (textish.length) return Array.from(textish).some(t => t.value.trim() !== "");
+      return false;
+    }
+
+    function update() {
+      const fields = form.querySelectorAll("[data-progress]");
+      if (!fields.length) return;
+      let filled = 0;
+      fields.forEach(f => { if (isFilled(f)) filled++; });
+      const percent = Math.round((filled / fields.length) * 100);
+      fill.style.width = percent + "%";
+      pct.textContent = percent + "%";
+    }
+
+    form.addEventListener("input", update);
+    form.addEventListener("change", update);
+    update();
+  }
+
+  /* ─── ENTREVISTA: ENVÍO AL BACKEND REAL (/contact) ─── */
+  function buildEntrevistaMensaje(form) {
+    const skip = new Set(["Nombre completo", "Correo electrónico", "Teléfono", "servicio", "_honey"]);
+    const lines = [];
+    const grouped = {};
+    const groupOrder = [];
+    form.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+      const name = el.name;
+      if (skip.has(name)) return;
+      if (el.type === "radio") {
+        if (!el.checked) return;
+        lines.push(name + ": " + el.value);
+        return;
+      }
+      if (el.type === "checkbox") {
+        if (!el.checked) return;
+        if (!grouped[name]) { grouped[name] = []; groupOrder.push(name); }
+        grouped[name].push(el.value);
+        return;
+      }
+      if (el.disabled) return;
+      const val = (el.value || "").toString().trim();
+      if (!val) return;
+      lines.push(name + ": " + val);
+    });
+    groupOrder.forEach(name => lines.push(name + ": " + grouped[name].join(", ")));
+    const phone = form.querySelector('[name="Teléfono"]');
+    const header = phone && phone.value.trim() ? "Teléfono: " + phone.value.trim() : "";
+    let mensaje = (header ? header + "\n" : "") + lines.join("\n");
+    if (mensaje.length > 3900) mensaje = mensaje.slice(0, 3900) + "…";
+    return mensaje;
+  }
+
+  function initEntrevistaForm() {
+    const form = document.getElementById("entrevista-form");
+    const btn = document.getElementById("entrevista-submit");
+    if (!form || !btn) return;
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const honey = form.querySelector('[name="_honey"]');
+      if (honey && honey.value) return;
+
+      const servicioEl = form.querySelector('input[name="servicio"]:checked');
+      const expEl = form.querySelector('input[name="Experiencia entrenando"]:checked');
+
+      const payload = {
+        nombre: (form.querySelector('[name="Nombre completo"]').value || "").trim(),
+        email: (form.querySelector('[name="Correo electrónico"]').value || "").trim(),
+        servicio: servicioEl ? servicioEl.value : "consulta",
+        experiencia: expEl ? expEl.getAttribute("data-exp-bucket") : null,
+        mensaje: buildEntrevistaMensaje(form)
+      };
+
+      btn.classList.remove("is-success");
+      btn.classList.add("is-loading");
+      btn.disabled = true;
+
+      const base = (window.DCAuth && window.DCAuth.apiBase) || "";
+      let ok = false;
+      try {
+        const res = await fetch(base + "/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        ok = res.ok;
+      } catch (err) {
+        ok = false;
+      }
+
+      btn.classList.remove("is-loading");
+
+      if (ok) {
+        btn.classList.add("is-success");
+        setTimeout(() => {
+          btn.classList.remove("is-success");
+          btn.disabled = false;
+          form.reset();
+          document.querySelectorAll(".mform-scale-caption").forEach(c => { c.textContent = ""; });
+          const sleepCaption = document.getElementById("e-sueno-caption");
+          if (sleepCaption) sleepCaption.textContent = "Buena";
+          const totalEl = document.getElementById("mform-days-total-val");
+          if (totalEl) totalEl.textContent = "4h 20m";
+        }, 4000);
+      } else {
+        btn.disabled = false;
+        if (window.DCAuth && window.DCAuth.toast) {
+          window.DCAuth.toast("No se pudo enviar tu entrevista. Escríbenos a contacto@dcentrenamiento.com o inténtalo más tarde.");
+        }
+      }
+    });
+  }
+
   /* ─── NAV ─── */
   function initNav() {
     const nav = document.getElementById("nav");
@@ -741,6 +984,13 @@
     safe(initScrollAnimations, "initScrollAnimations");
     safe(initCardTilt, "initCardTilt");
     safe(initContactForm, "initContactForm");
+    safe(initEntrevistaPlanParam, "initEntrevistaPlanParam");
+    safe(initEntrevistaAccordion, "initEntrevistaAccordion");
+    safe(initEntrevistaSteppers, "initEntrevistaSteppers");
+    safe(initEntrevistaDays, "initEntrevistaDays");
+    safe(initEntrevistaScales, "initEntrevistaScales");
+    safe(initEntrevistaProgress, "initEntrevistaProgress");
+    safe(initEntrevistaForm, "initEntrevistaForm");
     safe(initCredits, "initCredits");
     safe(initCoverflow, "initCoverflow");
     safe(initLeadForm, "initLeadForm");
