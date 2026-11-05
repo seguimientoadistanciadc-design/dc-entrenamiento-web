@@ -229,7 +229,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   box-shadow: 0 12px 36px rgba(0,0,0,0.5);
 }
 .nav-logo { display: flex; align-items: center; }
-.nav-logo-img { height: 38px; width: auto; }
+.nav-logo-img { height: 56px; width: auto; transition: transform .3s ease; }
+.nav-logo:hover .nav-logo-img { transform: scale(1.06); }
 .nav-links { display: flex; align-items: center; gap: 2rem; }
 .nav-link {
   font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
@@ -692,7 +693,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   max-width: 1280px; margin: 0 auto 2rem;
 }
 .footer-inner--standalone { grid-template-columns: 1.2fr 1fr; }
-.footer-logo-img { height: 36px; width: auto; margin-bottom: 1rem; }
+.footer-logo-img { height: 72px; width: auto; margin-bottom: 1rem; }
 .standalone-spacer { height: 1rem; }
 .footer-brand p { color: var(--gris-claro); font-size: 0.85rem; line-height: 1.6; font-weight: 300; }
 .footer-nav, .footer-contact { display: flex; flex-direction: column; gap: 0.55rem; }
@@ -1335,3 +1336,5 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
 @media (max-width: 380px) {
   .nav--standalone .nav-link:not(.nav-link--cta) { display: none; }
 }
+
+@media (max-width: 768px) { .nav-logo-img { height: 46px; } .footer-logo-img { height: 60px; } }
