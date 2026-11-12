@@ -1440,3 +1440,42 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
   .dcapp-nav-cta { display: none; }
   .dcapp-ctas .btn { width: 100%; justify-content: center; }
 }
+
+/* Ecosistema: antes / ahora, ciclo e implicaciones */
+.dcapp-vs { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 1.5rem; align-items: stretch; }
+.dcapp-vs-col { padding: 1.8rem; border-radius: var(--radius-lg); border: 1px solid var(--glass-border); background: var(--glass-bg); }
+.dcapp-vs-col--ahora { border-color: var(--line-rojo); background: linear-gradient(160deg, rgba(200,16,46,0.16), rgba(200,16,46,0.03)); box-shadow: var(--glow-rojo); }
+.dcapp-vs-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); }
+.dcapp-vs-col--ahora .dcapp-vs-tag { color: #ff4d6a; }
+.dcapp-vs-col ul { margin-top: 1rem; display: grid; gap: 0.75rem; }
+.dcapp-vs-col li { color: var(--ink-soft); font-weight: 300; padding-left: 1.4rem; position: relative; }
+.dcapp-vs-col--antes li::before { content: "–"; position: absolute; left: 0; color: var(--ink-mute); }
+.dcapp-vs-col--ahora li { color: var(--ink); }
+.dcapp-vs-col--ahora li::before { content: "✓"; position: absolute; left: 0; color: #ff4d6a; font-weight: 700; }
+.dcapp-vs-arrow { display: grid; place-items: center; font-size: 2rem; color: var(--rojo); }
+.dcapp-quote { margin-top: 2.6rem; max-width: 62ch; font-family: 'Libre Baskerville', Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.55; color: var(--ink-soft); border-left: 3px solid var(--rojo); padding-left: 1.4rem; }
+.dcapp-quote strong { color: var(--ink); font-weight: 700; }
+.dcapp-loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; counter-reset: none; position: relative; }
+.dcapp-loop li { position: relative; padding: 1.8rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--glass-border); background: var(--glass-bg); }
+.dcapp-loop li:not(:last-child)::after { content: "→"; position: absolute; right: -1.05rem; top: 50%; transform: translateY(-50%); color: var(--rojo); font-size: 1.3rem; z-index: 2; }
+.dcapp-loop li:last-child { border-color: var(--line-rojo); }
+.dcapp-loop li:last-child::after { content: "↻ vuelve a empezar"; position: absolute; left: 1.5rem; bottom: -1.9rem; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ff4d6a; }
+.dcapp-loop-n { font-family: 'JetBrains Mono', monospace; color: var(--rojo); font-size: 0.8rem; letter-spacing: 0.15em; }
+.dcapp-loop h3 { font-family: 'Libre Baskerville', Georgia, serif; font-size: 1.35rem; margin: 0.6rem 0 0.5rem; }
+.dcapp-loop p { color: var(--ink-soft); font-weight: 300; font-size: 0.97rem; }
+.dcapp-impl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.2rem 2.4rem; }
+.dcapp-impl > div { border-top: 1px solid var(--line-rojo); padding-top: 1.2rem; }
+.dcapp-impl strong { display: block; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.4rem; }
+.dcapp-impl p { color: var(--ink-soft); font-weight: 300; }
+@media (max-width: 980px) {
+  .dcapp-vs { grid-template-columns: minmax(0, 1fr); }
+  .dcapp-vs-arrow { transform: rotate(90deg); font-size: 1.6rem; }
+  .dcapp-loop { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1.2rem; }
+  .dcapp-loop li::after { display: none; }
+  .dcapp-loop li:last-child::after { display: block; }
+  .dcapp-impl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .dcapp-loop, .dcapp-impl { grid-template-columns: minmax(0, 1fr); }
+  .dcapp-loop li:last-child { margin-bottom: 1.6rem; }
+}
