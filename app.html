@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App DC Entrenamiento — Tu programa de hipertrofia en el celular</title>
+  <meta name="description" content="La app de DC Entrenamiento: tu programa de hipertrofia en el celular. Qué sesión te toca, registro serie por serie, feedback de técnica en video, cuestionarios y progreso. Incluida en la asesoría." />
+  <meta property="og:title" content="App DC Entrenamiento — Tu programa, en tu bolsillo" />
+  <meta property="og:description" content="Registro serie por serie, feedback de técnica en video y seguimiento con datos. Incluida en la asesoría de DC Entrenamiento." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dcentrenamiento.com/app.html" />
+  <meta property="og:image" content="https://www.dcentrenamiento.com/assets/img/app/panel.webp" />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20261112" />
+</head>
+<body class="dcapp-page">
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navegación principal">
+    <a href="index.html#inicio" class="nav-logo" aria-label="DcEntrenamiento inicio">
+      <img src="assets/img/logo.png" alt="DcEntrenamiento" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#sobre" class="nav-link">Sobre mí</a></li>
+      <li><a href="index.html#asesoria" class="nav-link">Asesoría</a></li>
+      <li><a href="#atletas" class="nav-link nav-link--app" aria-current="page">App</a></li>
+      <li><a href="index.html#recursos" class="nav-link">Recursos</a></li>
+      <li><a href="index.html#contacto" class="nav-link nav-link--cta">Contactar</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="https://app.dcentrenamiento.com" class="btn btn--primary dcapp-nav-cta">Entrar a la app</a>
+      <button class="nav-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="nav-mobile" aria-hidden="true" role="dialog" aria-label="Menú móvil">
+    <button class="nav-mobile-close" aria-label="Cerrar menú">✕</button>
+    <ul role="list">
+      <li><a href="https://app.dcentrenamiento.com" class="nav-mobile-link nav-mobile-link--cta">Entrar a la app</a></li>
+      <li><a href="#atletas" class="nav-mobile-link">Para atletas</a></li>
+      <li><a href="#entrenadores" class="nav-mobile-link">Para entrenadores</a></li>
+      <li><a href="#entrar" class="nav-mobile-link">Cómo entrar</a></li>
+      <li><a href="#preguntas" class="nav-mobile-link">Preguntas</a></li>
+      <li><a href="index.html#asesoria" class="nav-mobile-link">Asesoría</a></li>
+      <li><a href="index.html" class="nav-mobile-link">Inicio</a></li>
+    </ul>
+  </div>
+  <div class="nav-overlay" aria-hidden="true"></div>
+
+  <main>
+    <!-- ─── HERO ─── -->
+    <section class="dcapp-hero" aria-labelledby="hero-title">
+      <div class="orb-bg dcapp-orb" aria-hidden="true"></div>
+      <div class="dcapp-inner">
+        <div>
+          <p class="section-kicker">La app de DC Entrenamiento</p>
+          <h1 class="dcapp-title" id="hero-title">Entrena con un sistema,<br><em>no con un PDF.</em></h1>
+          <p class="section-sub">Tu programa de hipertrofia en el celular: qué sesión te toca, registro serie por serie, feedback de tu técnica en video y ajustes con datos reales. Incluida en la asesoría.</p>
+          <div class="dcapp-ctas" style="margin-top:2rem">
+            <a href="https://app.dcentrenamiento.com" class="btn btn--primary">Entrar a la app →</a>
+            <a href="index.html#asesoria" class="btn btn--ghost">Ver planes de asesoría</a>
+          </div>
+          <div class="dcapp-chips" aria-label="Características">
+            <span class="dcapp-chip">iPhone y Android</span>
+            <span class="dcapp-chip">Sin descargar de tiendas</span>
+            <span class="dcapp-chip">Funciona sin señal</span>
+          </div>
+        </div>
+        <div class="dcapp-visual" aria-hidden="true">
+          <figure class="dcapp-phone dcapp-phone--back"><img src="assets/img/app/sesion.webp" alt="" width="390" height="844" decoding="async" /></figure>
+          <figure class="dcapp-phone"><img src="assets/img/app/inicio.webp" alt="" width="390" height="844" fetchpriority="high" decoding="async" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ATLETAS ─── -->
+    <section class="dcapp-section" id="atletas" aria-labelledby="atletas-heading">
+      <div class="dcapp-wrap">
+        <div class="section-header reveal" data-reveal>
+          <p class="section-kicker">01 — Para atletas</p>
+          <h2 class="section-heading" id="atletas-heading">Todo lo que necesitas<br><em>entre serie y serie.</em></h2>
+          <p class="section-sub">Diseñada para usarse en el gym, con una mano y en segundos.</p>
+        </div>
+        <div class="dcapp-grid">
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg></span><h3>Sabes qué te toca</h3><p>La app sigue el calendario de tu bloque: tu semana, tu siguiente sesión y lo que tengas pendiente. Puedes ponerte al día hasta 7 días después o adelantar la semana siguiente.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span><h3>Registro serie por serie</h3><p>Kilos, repeticiones y RIR (con “F” de fallo) en botones grandes. Ves lo que hiciste la vez anterior y tu e1RM, y guardas tu avance cuando quieras.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM16 10l5-3v10l-5-3"/></svg></span><h3>Feedback de técnica</h3><p>Grabas la serie que te pido y la subes desde la app. Te respondo con un video: cámara lenta, cuadro a cuadro, ángulos, flechas y mi explicación en voz.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></span><h3>Cuestionarios que ajustan tu plan</h3><p>Cada domingo, bienestar (sueño, energía, estrés…). Cada dos semanas, fatiga y molestias por músculo. Con eso ajusto series, descanso y progresión.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M7 15l4-4 3 3 5-6"/></svg></span><h3>Tu progreso, con datos</h3><p>Rendimiento por ejercicio, por sesión y por semana; tu cumplimiento del bloque y tu historial completo, siempre disponible.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h0"/></svg></span><h3>Funciona sin señal</h3><p>En el gym sin cobertura registras igual: se guarda en tu teléfono y se sube sola al recuperar la conexión. Se instala como app en iPhone y Android.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── REGISTRO ─── -->
+    <section class="dcapp-section" aria-labelledby="registro-heading">
+      <div class="dcapp-wrap dcapp-split">
+        <div class="dcapp-center reveal" data-reveal>
+          <figure class="dcapp-phone"><img src="assets/img/app/sesion.webp" alt="Registro de una sesión: rango de 8 a 10 repeticiones, indicaciones del entrenador y series con kilos, repeticiones y RIR" width="390" height="844" loading="lazy" decoding="async" /></figure>
+        </div>
+        <div class="reveal" data-reveal>
+          <p class="section-kicker">Registro de la sesión</p>
+          <h3 id="registro-heading">Enfocado en el ejercicio<br><em>que estás haciendo.</em></h3>
+          <p class="section-sub">El ejercicio actual se abre en grande y los demás se pliegan. Sin buscar, sin perder el hilo.</p>
+          <ul class="dcapp-list">
+            <li><strong>Rango de repeticiones e indicaciones</strong> de tu entrenador bien visibles.</li>
+            <li><strong>RIR con “F” de fallo</strong> y la marca de la vez anterior en cada ejercicio.</li>
+            <li><strong>Guardar avance</strong> sin salir; terminas cuando acabes, aunque sea más tarde.</li>
+            <li><strong>Máquina ocupada:</strong> cambias por la alternativa que tu entrenador definió.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── VIDEO ─── -->
+    <section class="dcapp-section" aria-labelledby="video-heading">
+      <div class="dcapp-wrap dcapp-split dcapp-split--rev">
+        <div class="reveal" data-reveal>
+          <figure class="dcapp-shot"><img src="assets/img/app/estudio.webp" alt="Estudio de revisión de video con ángulo de rodilla de 85 grados, flecha y círculo dibujados sobre una sentadilla" width="1400" height="1323" loading="lazy" decoding="async" /></figure>
+        </div>
+        <div class="reveal" data-reveal>
+          <p class="section-kicker">Feedback de técnica</p>
+          <h3 id="video-heading">Como revisarte<br><em>en persona.</em></h3>
+          <p class="section-sub">Subes tu serie desde la app y recibes un video con la explicación, no solo un “bien hecho”.</p>
+          <ul class="dcapp-list">
+            <li><strong>Cámara lenta y cuadro a cuadro</strong> para ver lo que a velocidad normal no se nota.</li>
+            <li><strong>Ángulos, flechas y trazos</strong> sobre tu propio video, con mi voz.</li>
+            <li><strong>Se optimiza en tu teléfono</strong> antes de subir: rápido y sin gastar tus datos.</li>
+            <li><strong>Privado:</strong> solo tú y tu entrenador lo ven; se borra a los 60 días.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CUESTIONARIOS ─── -->
+    <section class="dcapp-section" aria-labelledby="quest-heading">
+      <div class="dcapp-wrap dcapp-split">
+        <div class="dcapp-center reveal" data-reveal>
+          <figure class="dcapp-phone"><img src="assets/img/app/cuestionario.webp" alt="Cuestionario de bienestar semanal con escalas de sueño, energía, dolor y estrés" width="390" height="844" loading="lazy" decoding="async" /></figure>
+        </div>
+        <div class="reveal" data-reveal>
+          <p class="section-kicker">Cuestionarios</p>
+          <h3 id="quest-heading">Tu recuperación<br><em>también cuenta.</em></h3>
+          <p class="section-sub">Dos a siete minutos el domingo. Con tus respuestas ajusto tu programa antes de que el cansancio se acumule.</p>
+          <ul class="dcapp-list">
+            <li><strong>Bienestar semanal:</strong> sueño, energía, dolor, estrés, ánimo, peso, pasos y alimentación.</li>
+            <li><strong>Fatiga y molestias cada 2 semanas:</strong> recuperación y pump por músculo, y dónde te molesta y con qué ejercicio.</li>
+            <li><strong>Alertas para tu entrenador</strong> si algo no va bien, para actuar a tiempo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ENTRENADORES ─── -->
+    <section class="dcapp-section" id="entrenadores" aria-labelledby="coach-heading">
+      <div class="dcapp-wrap">
+        <div class="section-header reveal" data-reveal>
+          <p class="section-kicker">02 — Para entrenadores</p>
+          <h2 class="section-heading" id="coach-heading">Tu asesoría,<br><em>bajo control.</em></h2>
+          <p class="section-sub">Todo lo que necesitas para dar seguimiento 1:1 a distancia, en un solo lugar.</p>
+        </div>
+        <figure class="dcapp-shot reveal" data-reveal><img src="assets/img/app/panel.webp" alt="Panel del entrenador con indicadores y avisos de hoy: planes por vencer, sesiones atrasadas y botones de WhatsApp" width="1600" height="1000" loading="lazy" decoding="async" /></figure>
+        <figure class="dcapp-shot reveal" data-reveal><img src="assets/img/app/cumplimiento.webp" alt="Mapa de cumplimiento del bloque por semanas y sesiones" width="1600" height="373" loading="lazy" decoding="async" /></figure>
+        <div class="dcapp-grid" style="margin-top:2.4rem">
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 20a2 2 0 0 0 4 0"/></svg></span><h3>Panel con avisos</h3><p>Quién vence, quién no ha entrenado, sesiones atrasadas, videos por revisar y alertas de dolor o fatiga. Con un toque, el mensaje de WhatsApp ya escrito.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5M3 13l9 5 9-5M3 17.5l9 5 9-5"/></svg></span><h3>Programación por bloques</h3><p>Constructor de sesiones con base de 300+ ejercicios, superseries, descansos, plantillas y progresión de acumulación o intensificación, con cuantificación de volumen en vivo.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h3>Cumplimiento visible</h3><p>Mapa semanas × sesiones por atleta: a tiempo, tarde, adelantada, saltada o no realizada. Sabes al instante quién necesita seguimiento.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM16 10l5-3v10l-5-3"/></svg></span><h3>Revisión de video profesional</h3><p>Estudio con cámara lenta, cuadro a cuadro, lápiz, flechas, círculos y medición de ángulos; grabas tu explicación y le llega al atleta con aviso por correo.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><h3>Pagos y vencimientos</h3><p>Registro de pagos, fecha de vencimiento automática y correos de aviso 7 días antes y el día que vence. Habilitas o pausas el acceso de cada atleta.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.35M15.5 4.15a3.5 3.5 0 0 1 0 6.7"/></svg></span><h3>Datos para decidir</h3><p>Rendimiento, e1RM, PRS y sRPE, tendencias de bienestar, sugerencias de volumen por músculo y explorador de entrenamientos con filtros.</p></article>
+        </div>
+        <div class="dcapp-callout reveal" data-reveal>
+          <div>
+            <strong>¿Eres entrenador y quieres usarla con tus atletas?</strong>
+            <p>Hoy la uso con los atletas de mi asesoría y pronto estará disponible para otros entrenadores, con tu propia cuenta y tus clientes. Escríbeme y te aviso primero.</p>
+          </div>
+          <div class="dcapp-ctas">
+            <a href="https://wa.me/524433961316?text=Hola%20Diego%2C%20soy%20entrenador%20y%20me%20interesa%20usar%20la%20app%20DC%20Entrenamiento%20con%20mis%20atletas." class="btn btn--primary" target="_blank" rel="noopener">Quiero usarla con mis atletas</a>
+            <a href="https://app.dcentrenamiento.com" class="btn btn--ghost">Ya tengo cuenta: entrar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CÓMO ENTRAR ─── -->
+    <section class="dcapp-section" id="entrar" aria-labelledby="entrar-heading">
+      <div class="dcapp-wrap">
+        <div class="section-header reveal" data-reveal>
+          <p class="section-kicker">03 — Cómo entrar</p>
+          <h2 class="section-heading" id="entrar-heading">Tres pasos<br><em>y a entrenar.</em></h2>
+        </div>
+        <div class="dcapp-steps">
+          <div class="dcapp-step reveal" data-reveal>
+            <h3>Elige tu asesoría</h3>
+            <p>Al contratar tu plan, tu entrenador te da de alta con tu correo y prepara tu primer bloque.</p>
+            <p style="margin-top:.8rem"><a href="index.html#asesoria" class="dcapp-note" style="color:var(--ink)"><u>Ver planes</u> →</a></p>
+          </div>
+          <div class="dcapp-step reveal" data-reveal>
+            <h3>Crea tu acceso</h3>
+            <p>Entra a <strong>app.dcentrenamiento.com</strong>, pulsa <strong>“Crear cuenta”</strong> con ese mismo correo y confírmalo. Tu programa aparece solo.</p>
+          </div>
+          <div class="dcapp-step reveal" data-reveal>
+            <h3>Instálala en tu celular</h3>
+            <ul>
+              <li><strong>iPhone:</strong> en Safari, Compartir → “Agregar a pantalla de inicio”.</li>
+              <li><strong>Android:</strong> en Chrome, menú ⋮ → “Instalar app”.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="dcapp-ctas reveal" data-reveal style="margin-top:2rem">
+          <a href="https://app.dcentrenamiento.com" class="btn btn--primary">Entrar a la app →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PREGUNTAS ─── -->
+    <section class="dcapp-section" id="preguntas" aria-labelledby="faq-heading">
+      <div class="dcapp-wrap">
+        <div class="section-header reveal" data-reveal>
+          <p class="section-kicker">04 — Preguntas frecuentes</p>
+          <h2 class="section-heading" id="faq-heading">Lo que<br><em>suelen preguntar.</em></h2>
+        </div>
+        <div class="dcapp-faq reveal" data-reveal>
+          <details><summary>¿La app tiene costo extra?</summary><p>No. Está incluida en los planes de asesoría (Fase Inicial y Programa Completo) mientras tu plan esté activo.</p></details>
+          <details><summary>¿Tengo que descargarla de la App Store o Google Play?</summary><p>No. Entras desde el navegador en app.dcentrenamiento.com y la instalas en tu pantalla de inicio; se abre como cualquier app y se actualiza sola.</p></details>
+          <details><summary>¿Funciona si en mi gym no hay señal?</summary><p>Sí. Tu registro se guarda en el teléfono y se sube automáticamente cuando recuperas conexión. Para subir videos sí necesitas internet (mejor con Wi-Fi).</p></details>
+          <details><summary>¿Quién puede ver mis videos?</summary><p>Solo tú y tu entrenador. Se guardan cifrados en tránsito, con enlaces temporales, y se borran automáticamente a los 60 días; las notas escritas se conservan.</p></details>
+          <details><summary>¿Qué pasa cuando termina mi plan?</summary><p>Conservas tu historial, tus gráficas y tus feedbacks. Para registrar sesiones nuevas renuevas tu plan: la app te muestra los planes y cómo pagar.</p></details>
+          <details><summary>Olvidé mi contraseña, ¿qué hago?</summary><p>En la pantalla de entrada pulsa “Olvidé mi contraseña” y te llega un correo para crear una nueva.</p></details>
+          <details><summary>Soy entrenador, ¿puedo usarla?</summary><p>Pronto. Escríbeme por WhatsApp desde la sección “Para entrenadores” y te aviso en cuanto abra cuentas para otros entrenadores.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CIERRE ─── -->
+    <section class="dcapp-section dcapp-final" aria-labelledby="final-heading">
+      <div class="orb-bg dcapp-orb" aria-hidden="true"></div>
+      <div class="dcapp-wrap reveal" data-reveal>
+        <h2 class="section-heading" id="final-heading">Tu siguiente bloque<br><em>empieza aquí.</em></h2>
+        <p class="section-sub">Elige tu asesoría y entrena con un programa que se ajusta a ti, semana a semana.</p>
+        <div class="dcapp-ctas">
+          <a href="index.html#asesoria" class="btn btn--primary">Elegir mi asesoría →</a>
+          <a href="https://app.dcentrenamiento.com" class="btn btn--ghost">Ya soy atleta: entrar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="DcEntrenamiento" class="footer-logo-img" />
+        <p>Metodología de entrenamiento<br>basada en evidencia científica.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Navegación pie de página">
+        <strong>Navegación</strong>
+        <a href="index.html#sobre">Sobre mí</a>
+        <a href="index.html#asesoria">Asesoría</a>
+        <a href="app.html">App</a>
+        <a href="index.html#recursos">Recursos</a>
+        <a href="index.html#blog">Publicaciones</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <div class="footer-contact">
+        <strong>Contacto</strong>
+        <a href="mailto:contacto@dcentrenamiento.com">contacto@dcentrenamiento.com</a>
+        <a href="tel:+524433961316">+52 443 396 1316</a>
+        <a href="https://www.instagram.com/diegocassas/" target="_blank" rel="noopener">Instagram: @diegocassas</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>© 2026 DcEntrenamiento · Diego Cassas · Todos los derechos reservados</small>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var local = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+      window.DC_CONFIG = { apiBase: local ? "http://localhost:8000" : "https://api.dcentrenamiento.com" };
+    })();
+  </script>
+  <script defer src="lib/gsap.min.js"></script>
+  <script defer src="lib/ScrollTrigger.min.js"></script>
+  <script defer src="lib/manifest.js"></script>
+  <script defer src="main.js?v=20260910"></script>
+</body>
+</html>
