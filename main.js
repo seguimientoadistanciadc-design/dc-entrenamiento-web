@@ -185,6 +185,79 @@
     return mensaje;
   }
 
+  /* ─── ENTREVISTA CONECTADA CON LA APP (Supabase) ─── */
+  // Clave publicable: es pública por diseño (la misma que usa la app); los
+  // permisos los controla la base de datos.
+  const DC_APP = {
+    url: "https://yeuthucawhhwelwelftq.supabase.co",
+    key: "sb_publishable_ryKIhEmUL9_C4zqvknQnYw_EWYo0qF9"
+  };
+  const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+  function entrevistaToken() {
+    const t = new URLSearchParams(location.search).get("c");
+    return t && UUID_RE.test(t) ? t : null;
+  }
+
+  async function dcAppRpc(fn, args) {
+    const res = await fetch(DC_APP.url + "/rest/v1/rpc/" + fn, {
+      method: "POST",
+      headers: { apikey: DC_APP.key, "Content-Type": "application/json" },
+      body: JSON.stringify(args)
+    });
+    if (!res.ok) throw new Error("rpc " + fn + " " + res.status);
+    return res.json();
+  }
+
+  /** Respuestas en el orden del formulario: [{ q, a }] (las de varias opciones, como lista). */
+  function collectEntrevistaAnswers(form) {
+    const skip = new Set(["Nombre completo", "Correo electrónico", "Teléfono", "servicio", "_honey"]);
+    const out = [];
+    const byName = {};
+    form.querySelectorAll("input[name], select[name], textarea[name]").forEach(el => {
+      const name = el.name;
+      if (skip.has(name) || el.disabled) return;
+      const cond = el.closest(".mform-cond");
+      if (cond && getComputedStyle(cond).display === "none") return; // pregunta que no aplica
+      if (el.type === "checkbox") {
+        if (!el.checked) return;
+        if (!byName[name]) { byName[name] = { q: name, a: [] }; out.push(byName[name]); }
+        byName[name].a.push(el.value);
+        return;
+      }
+      if (el.type === "radio" && !el.checked) return;
+      const val = (el.value || "").toString().trim();
+      if (!val) return;
+      out.push({ q: name, a: val.slice(0, 4000) });
+    });
+    return out;
+  }
+
+  /** Enlace personal (?c=…): precarga nombre, correo y teléfono del cliente. */
+  function initEntrevistaClientLink() {
+    const form = document.getElementById("entrevista-form");
+    const banner = document.getElementById("mform-client-banner");
+    const token = entrevistaToken();
+    if (!form || !banner || !token) return;
+    dcAppRpc("intake_info", { p_token: token }).then(info => {
+      if (!info) return;
+      const set = (name, v) => {
+        const el = form.querySelector('[name="' + name + '"]');
+        if (el && v && !el.value) { el.value = v; el.dispatchEvent(new Event("input", { bubbles: true })); }
+      };
+      set("Nombre completo", info.full_name);
+      set("Correo electrónico", info.email);
+      set("Teléfono", info.phone);
+      const first = String(info.full_name || "").split(" ")[0];
+      document.getElementById("mform-client-banner-title").textContent =
+        info.answered ? first + ", ya recibí tu entrevista" : "Hola " + first + ", esta es tu entrevista inicial";
+      document.getElementById("mform-client-banner-text").textContent = info.answered
+        ? "Si quieres corregir algo, puedes enviarla de nuevo: guardaré la versión más reciente."
+        : "Tus respuestas llegan directo a tu ficha en la app de DC Entrenamiento. Con ellas diseño tu programa.";
+      banner.hidden = false;
+    }).catch(() => { /* sin conexión con la app: el formulario funciona igual */ });
+  }
+
   function initEntrevistaForm() {
     const form = document.getElementById("entrevista-form");
     const btn = document.getElementById("entrevista-submit");
@@ -213,17 +286,22 @@
       btn.disabled = true;
 
       const base = (window.DCAuth && window.DCAuth.apiBase) || "";
-      let ok = false;
-      try {
-        const res = await fetch(base + "/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        ok = res.ok;
-      } catch (err) {
-        ok = false;
-      }
+      // 1) A la app (ficha del cliente o prospecto) · 2) al correo de siempre
+      const toApp = dcAppRpc("submit_intake", {
+        p_token: entrevistaToken(),
+        p_full_name: payload.nombre,
+        p_email: payload.email,
+        p_phone: (form.querySelector('[name="Teléfono"]').value || "").trim(),
+        p_service: payload.servicio,
+        p_answers: collectEntrevistaAnswers(form)
+      }).then(() => true, () => false);
+      const toMail = fetch(base + "/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(res => res.ok, () => false);
+      const [okApp, okMail] = await Promise.all([toApp, toMail]);
+      const ok = okApp || okMail;
 
       btn.classList.remove("is-loading");
 
@@ -985,6 +1063,7 @@
     safe(initCardTilt, "initCardTilt");
     safe(initContactForm, "initContactForm");
     safe(initEntrevistaPlanParam, "initEntrevistaPlanParam");
+    safe(initEntrevistaClientLink, "initEntrevistaClientLink");
     safe(initEntrevistaAccordion, "initEntrevistaAccordion");
     safe(initEntrevistaSteppers, "initEntrevistaSteppers");
     safe(initEntrevistaDays, "initEntrevistaDays");
