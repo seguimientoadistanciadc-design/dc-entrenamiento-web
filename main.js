@@ -561,6 +561,26 @@
     });
   }
 
+  /* ─── BOTÓN FIJO "SOLICITAR ASESORÍA" (celular) ───
+     Aparece al pasar el hero y se oculta mientras se ven los planes o el
+     formulario de contacto, para no tapar lo que el visitante está leyendo. */
+  function initStickyCta() {
+    const btn = document.querySelector("[data-sticky-cta]");
+    if (!btn || !("IntersectionObserver" in window)) return;
+    const watched = ["inicio", "asesoria", "contacto"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+    const visible = new Set();
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => e.isIntersecting ? visible.add(e.target.id) : visible.delete(e.target.id));
+      const show = visible.size === 0;
+      btn.classList.toggle("is-visible", show);
+      btn.setAttribute("aria-hidden", show ? "false" : "true");
+      btn.tabIndex = show ? 0 : -1;
+    }, { threshold: 0.12 });
+    watched.forEach(el => io.observe(el));
+  }
+
   /* ─── CREDITS ─── */
   function initCredits() {
     const el = document.getElementById("photo-credits");
@@ -1070,6 +1090,7 @@
     safe(initEntrevistaScales, "initEntrevistaScales");
     safe(initEntrevistaProgress, "initEntrevistaProgress");
     safe(initEntrevistaForm, "initEntrevistaForm");
+    safe(initStickyCta, "initStickyCta");
     safe(initCredits, "initCredits");
     safe(initCoverflow, "initCoverflow");
     safe(initLeadForm, "initLeadForm");
