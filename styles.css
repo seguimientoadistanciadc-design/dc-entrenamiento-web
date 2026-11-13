@@ -434,21 +434,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 .sobre-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* ─── MARQUEE ─── */
-.marquee-wrap {
-  overflow: clip;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  padding: 1rem 0; background: var(--negro-2);
-}
-.marquee-track {
-  display: flex; gap: 2rem; white-space: nowrap;
-  animation: marquee 30s linear infinite;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris);
-}
-.marquee-track span { flex-shrink: 0; }
-.accent-sep { color: var(--rojo); opacity: 0.6; }
-@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
 /* ─── ASESORÍA ─── */
 .asesoria { padding: 7rem 5vw; }
@@ -1120,7 +1105,6 @@ body.consola-open { overflow: hidden; }
   color: var(--rojo); border: 1px solid var(--line-rojo); border-radius: 999px;
   padding: 0.4rem 0.85rem; margin-bottom: 1.4rem; text-transform: uppercase;
 }
-.tool-card-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin: 0 0 0.8rem; color: var(--ink); }
 .tool-card-desc { color: var(--ink-soft); max-width: 46ch; margin: 0 auto 1.7rem; line-height: 1.6; }
 .tool-card-list {
   list-style: none; padding: 0; margin: 0 auto 2rem; display: inline-flex;
@@ -1478,4 +1462,120 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
 @media (max-width: 560px) {
   .dcapp-loop, .dcapp-impl { grid-template-columns: minmax(0, 1fr); }
   .dcapp-loop li:last-child { margin-bottom: 1.6rem; }
+}
+
+/* ═══════════════════════════════════════════
+   OPTIMIZACIÓN GRÁFICA — Fase 1
+   Ritmo vertical, títulos, indicadores, calculadora,
+   formulario y carruseles deslizables en celular.
+   ═══════════════════════════════════════════ */
+
+/* ─── Ritmo vertical: menos aire en celular, igual de amplio en computadora ─── */
+:root { --section-y: clamp(3.75rem, 8vw, 6rem); }
+.sobre, .asesoria, .proceso, .volumen, .tool, .blog, .contacto, .dcapp, .dcapp-section {
+  padding-top: var(--section-y); padding-bottom: var(--section-y);
+}
+.section-header { margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+
+/* Títulos: el texto de abajo ya no toca las letras en cursiva */
+.section-heading + p, .section-heading + .section-sub { margin-top: 1.1rem; }
+
+/* ─── Indicadores: franja compacta ─── */
+.stats { padding: clamp(1.5rem, 4vw, 3.5rem) 5vw; }
+.stat { padding: 1.6rem 1.4rem; gap: 0.8rem; }
+
+/* ─── Calculadora: alineada como el resto, video y tarjeta lado a lado ─── */
+.tool-inner { max-width: 1280px; }
+.tool-layout { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
+.tool-video, .tool-card { max-width: none; margin: 0; }
+.tool-card { padding: 2.4rem 2.2rem; text-align: left; }
+.tool-card-glow { left: 0; right: 30%; }
+.tool-card-desc { margin: 0 0 1.5rem; }
+.tool-card-list { display: flex; margin: 0 0 1.8rem; }
+.tool-video-cap { text-align: left; }
+
+/* ─── Formulario de contacto: tarjeta neutra y textos de ejemplo legibles ─── */
+.contacto-form {
+  background:
+    linear-gradient(var(--bg-3), var(--bg-3)) padding-box,
+    linear-gradient(150deg, rgba(200,16,46,0.35), rgba(255,255,255,0.06) 45%) border-box;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.vol-lead-form input::placeholder { color: var(--gris); }
+
+.swipe-hint {
+  display: none; margin: 0 0 0.75rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gris);
+}
+
+@media (max-width: 900px) {
+  .tool-layout { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  /* Indicadores en una sola fila de 4, sin íconos */
+  .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+  .stat { padding: 0.9rem 0.4rem; gap: 0.35rem; align-items: center; text-align: center; }
+  .stat-icon { display: none; }
+  .stat-num { font-size: clamp(1rem, 5vw, 1.35rem); margin-bottom: 0.15rem; white-space: nowrap; }
+  .stat-label { font-size: 0.52rem; letter-spacing: 0.06em; line-height: 1.35; }
+
+  /* Carruseles deslizables: planes, proceso, publicaciones y tarjetas de la app */
+  .services-grid, .proceso-steps, .blog-grid, .dcapp-grid, .dcapp-steps, .dcapp-loop {
+    display: grid; grid-template-columns: none;
+    grid-auto-flow: column; grid-auto-columns: 84%;
+    gap: 0.9rem; align-items: stretch;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: 5vw;
+    margin-inline: -5vw; padding: 0.25rem 5vw 1rem;
+    scrollbar-width: none; perspective: none;
+  }
+  .services-grid::-webkit-scrollbar, .proceso-steps::-webkit-scrollbar, .blog-grid::-webkit-scrollbar,
+  .dcapp-grid::-webkit-scrollbar, .dcapp-steps::-webkit-scrollbar, .dcapp-loop::-webkit-scrollbar { display: none; }
+  .services-grid > *, .proceso-steps > *, .blog-grid > *, .dcapp-grid > *, .dcapp-steps > *, .dcapp-loop > * {
+    scroll-snap-align: start; grid-column: auto !important; max-width: none !important; margin-bottom: 0 !important;
+  }
+  .proceso-steps { margin-top: 2rem; }
+  .proceso-divider { display: none; }
+  .dcapp-loop li::after { display: none !important; }
+
+  .swipe-hint { display: block; }
+  .swipe-hint + [style*="margin-top"] { margin-top: 0 !important; }
+  .dcapp-shot + .swipe-hint { margin-top: 2rem; }
+}
+
+/* Celular del ecosistema: ya no se sale por el borde izquierdo */
+@media (max-width: 560px) {
+  .dcapp-visual { min-height: 400px; }
+  .dcapp-phone--back { transform: translate(-24%, 6%) rotate(-7deg) scale(0.86); }
+  .dcapp-visual > .dcapp-phone:not(.dcapp-phone--back) { transform: translateX(14%) rotate(3deg); }
+}
+
+/* ─── Volumen 1: carrusel de portadas y presentación gratis más compactos ─── */
+.coverflow { margin: 2rem 0 2.5rem; }
+.coverflow-viewport { height: 400px; }
+.cf-item { width: 250px; height: 354px; margin: -177px 0 0 -125px; }
+
+@media (max-width: 768px) {
+  .coverflow-viewport { height: 320px; }
+  .cf-item { width: 196px; height: 277px; margin: -138px 0 0 -98px; }
+  .coverflow-nav { top: 160px; }
+  .coverflow { margin: 1.25rem 0 1.75rem; }
+
+  .vol-lead { grid-template-columns: 88px minmax(0, 1fr); gap: 1.1rem 1.2rem; text-align: left; padding: 1.4rem; align-items: start; }
+  .vol-lead-cover { max-width: none; margin: 0; }
+  .vol-lead-title { font-size: 1.2rem; }
+  .vol-lead-desc { font-size: 0.86rem; margin-bottom: 0; }
+  .vol-lead-desc { margin-bottom: 1rem; }
+  .vol-lead-form { flex-direction: column; margin: 0; max-width: none; }
+
+  /* Sobre mí: foto menos alta */
+  .sobre-img { aspect-ratio: 1 / 1; object-position: center 12%; }
+
+  /* Pie de página en dos columnas */
+  .footer { padding-top: 2.5rem; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.75rem 1.25rem; }
+  .footer-inner > :first-child { grid-column: 1 / -1; }
 }
