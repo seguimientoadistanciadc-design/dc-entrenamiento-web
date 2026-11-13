@@ -561,6 +561,37 @@
     });
   }
 
+  /* ─── PESTAÑAS (página de la app) ───
+     Sin JavaScript se ven todos los paneles; con JavaScript solo el activo.
+     Flechas izquierda/derecha, Inicio y Fin mueven entre pestañas. */
+  function initTabs() {
+    document.querySelectorAll("[data-tabs]").forEach(root => {
+      const tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+      if (!tabs.length) return;
+      const select = (tab, focus) => {
+        tabs.forEach(t => {
+          const on = t === tab;
+          t.setAttribute("aria-selected", on ? "true" : "false");
+          t.tabIndex = on ? 0 : -1;
+          const panel = document.getElementById(t.getAttribute("aria-controls"));
+          if (panel) panel.hidden = !on;
+        });
+        if (focus) tab.focus();
+      };
+      tabs.forEach((tab, i) => {
+        tab.addEventListener("click", () => select(tab, false));
+        tab.addEventListener("keydown", e => {
+          const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+          if (next === undefined) return;
+          e.preventDefault();
+          select(tabs[(next + tabs.length) % tabs.length], true);
+        });
+      });
+      select(tabs.find(t => t.getAttribute("aria-selected") === "true") || tabs[0], false);
+      root.classList.add("is-ready");
+    });
+  }
+
   /* ─── BOTÓN FIJO "SOLICITAR ASESORÍA" (celular) ───
      Aparece al pasar el hero y se oculta mientras se ven los planes o el
      formulario de contacto, para no tapar lo que el visitante está leyendo. */
@@ -1090,6 +1121,7 @@
     safe(initEntrevistaScales, "initEntrevistaScales");
     safe(initEntrevistaProgress, "initEntrevistaProgress");
     safe(initEntrevistaForm, "initEntrevistaForm");
+    safe(initTabs, "initTabs");
     safe(initStickyCta, "initStickyCta");
     safe(initCredits, "initCredits");
     safe(initCoverflow, "initCoverflow");

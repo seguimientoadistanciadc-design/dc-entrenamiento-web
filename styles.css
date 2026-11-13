@@ -1437,8 +1437,8 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
   .dcapp-loop li::after { display: none !important; }
 
   .swipe-hint { display: block; }
-  .swipe-hint + [style*="margin-top"] { margin-top: 0 !important; }
-  .dcapp-shot + .swipe-hint { margin-top: 2rem; }
+  .dcapp-shots + .swipe-hint { margin-top: 2rem; }
+  .swipe-hint + .dcapp-grid--spaced, .swipe-hint + .dcapp-grid--after-tabs { margin-top: 0; }
 }
 
 /* Celular del ecosistema: ya no se sale por el borde izquierdo */
@@ -1607,4 +1607,64 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
   .hero-sub { margin-bottom: 1.3rem; line-height: 1.6; }
   .hero-stats { margin-top: 1.5rem; }
   .hero-stats .stat { padding: 0.8rem 1rem; }
+}
+
+/* ═══════════════════════════════════════════
+   OPTIMIZACIÓN GRÁFICA — Fase 3 (página de la app)
+   Subsecciones dentro de una misma sección, pestañas para las funciones
+   del atleta y capturas del entrenador lado a lado.
+   ═══════════════════════════════════════════ */
+.dcapp-sub { margin-top: clamp(3rem, 6vw, 4.5rem); padding-top: clamp(2rem, 4vw, 3rem); border-top: 1px solid var(--line); }
+
+/* Pestañas */
+.dcapp-tablist {
+  display: inline-flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.35rem; margin-bottom: 2rem;
+  border: 1px solid var(--glass-border); border-radius: 999px; background: var(--glass-bg);
+}
+.dcapp-tabs:not(.is-ready) .dcapp-tablist { display: none; }
+.dcapp-tab {
+  padding: 0.6rem 1.2rem; border-radius: 999px; font-weight: 600; font-size: 0.92rem;
+  color: var(--ink-soft); transition: background 0.2s, color 0.2s;
+}
+.dcapp-tab:hover { color: var(--ink); }
+.dcapp-tab[aria-selected="true"] { background: var(--rojo); color: #fff; }
+.dcapp-tab:focus-visible { outline: 2px solid var(--rojo); outline-offset: 2px; }
+.dcapp-tabpanel[hidden] { display: none; }
+.dcapp-tabs:not(.is-ready) .dcapp-tabpanel + .dcapp-tabpanel { margin-top: 4rem; }
+.dcapp-tabs.is-ready .dcapp-tabpanel .section-kicker { display: none; }
+.dcapp-tabpanel .dcapp-split { gap: 3rem; }
+.dcapp-tabpanel .dcapp-shot { max-width: 560px; }
+.dcapp-grid--after-tabs, .dcapp-grid--spaced { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+
+/* Entrenadores: el mapa de cumplimiento se superpone a la esquina del panel */
+.dcapp-shots { position: relative; }
+.dcapp-shots .dcapp-shot:first-child { width: 80%; }
+.dcapp-shots .dcapp-shot + .dcapp-shot {
+  position: relative; z-index: 2; width: 58%; margin: -9% 0 0 auto;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+@media (max-width: 768px) {
+  .dcapp-tabs.is-ready .dcapp-tablist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 14px; width: 100%; }
+  .dcapp-tab { padding: 0.55rem 0.4rem; font-size: 0.8rem; line-height: 1.25; border-radius: 10px; text-align: center; }
+  .dcapp-tabs + .swipe-hint { margin-top: 2.2rem; }
+  .dcapp-shots .dcapp-shot:first-child { width: 100%; }
+
+  /* "Qué implica para ti" también se desliza */
+  .dcapp-impl {
+    display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%;
+    gap: 1.2rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 6vw;
+    margin-inline: -6vw; padding: 0 6vw 0.5rem; scrollbar-width: none;
+  }
+  .dcapp-impl::-webkit-scrollbar { display: none; }
+  .dcapp-impl > div { scroll-snap-align: start; }
+
+  /* Portada de la app: celulares más contenidos */
+  .dcapp-hero { padding-top: 6.5rem; padding-bottom: 3.5rem; }
+  .dcapp-hero .dcapp-visual { min-height: 340px; }
+  .dcapp-hero .dcapp-phone { width: min(200px, 50vw); }
+  .dcapp-tabpanel .dcapp-split { gap: 1.8rem; }
+  .dcapp-tabpanel .dcapp-phone { width: min(200px, 52vw); }
+  .dcapp-shots { grid-template-columns: minmax(0, 1fr); }
+  .dcapp-shots .dcapp-shot:nth-child(2) { display: none; }
 }
