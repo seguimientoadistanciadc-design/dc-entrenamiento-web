@@ -1820,3 +1820,9 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
 .bento-card--report .ui-screen { margin-top: 0; }
 .feature-chips-legend { color: var(--gris); margin-left: 0.3rem; }
 .feature-chips-legend i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rojo); margin: 0 0.35rem 0 0.3rem; vertical-align: middle; }
+
+/* Chips dentro de las tarjetas del fundamento (página de la app) */
+.dcapp-card { display: flex; flex-direction: column; }
+.feature-chips--card { margin-top: auto; padding-top: 1.1rem; gap: 0.35rem; }
+.feature-chips--card li { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+.feature-chips-note { margin-top: 0.9rem; font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris-claro); }
