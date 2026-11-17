@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261113" />
+  <link rel="stylesheet" href="styles.css?v=20261117" />
 </head>
 <body class="dcapp-page">
 
@@ -47,6 +47,7 @@
       <li><a href="#origen" class="nav-mobile-link">Por qué lo desarrollé</a></li>
       <li><a href="#fundamento" class="nav-mobile-link">El fundamento</a></li>
       <li><a href="#atletas" class="nav-mobile-link">Para atletas</a></li>
+      <li><a href="#progreso" class="nav-mobile-link">Tu progreso</a></li>
       <li><a href="#entrenadores" class="nav-mobile-link">Para entrenadores</a></li>
       <li><a href="#entrar" class="nav-mobile-link">Cómo entrar</a></li>
       <li><a href="#preguntas" class="nav-mobile-link">Preguntas</a></li>
@@ -74,6 +75,9 @@
             <span class="dcapp-chip">iPhone y Android</span>
             <span class="dcapp-chip">Sin descargar de tiendas</span>
             <span class="dcapp-chip">Funciona sin señal</span>
+            <span class="dcapp-chip">Avisos en tu celular</span>
+            <span class="dcapp-chip">Kg o lb</span>
+            <span class="dcapp-chip">Reporte mensual</span>
           </div>
         </div>
         <div class="dcapp-visual" aria-hidden="true">
@@ -145,7 +149,7 @@
         </div>
         <p class="swipe-hint" aria-hidden="true">Desliza para ver más →</p>
         <div class="dcapp-grid">
-          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l6-6 4 4 6-8M14 8h6v6"/></svg></span><h3>Sobrecarga progresiva</h3><p>Sin registro no hay progresión verificable. Cada serie guarda carga, repeticiones y RIR, y el sistema estima tu 1RM (e1RM) para saber si realmente estás progresando, sesión a sesión.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l6-6 4 4 6-8M14 8h6v6"/></svg></span><h3>Sobrecarga progresiva</h3><p>Sin registro no hay progresión verificable. Cada serie guarda carga, repeticiones y RIR, y el sistema compara tu volumen de carga y tus kilos manejados con la vez anterior para saber si realmente estás progresando, sesión a sesión.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V10M10 20V4M15 20v-7M20 20v-4"/></svg></span><h3>Volumen cuantificado por músculo</h3><p>El estímulo depende del volumen efectivo. El sistema cuantifica tus series semanales por grupo muscular —ponderadas por cercanía al fallo— para distribuir el volumen con precisión.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4M3.5 15a9 9 0 1 1 17 0"/><circle cx="12" cy="14" r="1.5"/></svg></span><h3>Proximidad al fallo</h3><p>La intensidad del esfuerzo importa tanto como la carga. Cada serie se prescribe y se registra con RIR (incluido el fallo), y la progresión ajusta series o esfuerzo semana a semana.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></span><h3>Autorregulación</h3><p>Entrenar más no siempre es mejor. El bienestar semanal y la fatiga por músculo cada dos semanas permiten ajustar volumen y descanso antes de que la fatiga se acumule.</p></article>
@@ -163,7 +167,7 @@
         <ol class="dcapp-loop">
           <li class="reveal" data-reveal><span class="dcapp-loop-n">01</span><h3>Planifico</h3><p>Diseño tu bloque: ejercicios, series, rangos, RIR, descansos y estrategia de progresión, con el volumen cuantificado por músculo.</p></li>
           <li class="reveal" data-reveal><span class="dcapp-loop-n">02</span><h3>Entrenas y registras</h3><p>La app te dice qué toca y registras cada serie en segundos, incluso sin señal. Grabas las series que te pido revisar.</p></li>
-          <li class="reveal" data-reveal><span class="dcapp-loop-n">03</span><h3>Medimos</h3><p>Rendimiento y e1RM, cumplimiento, cuestionarios de bienestar y fatiga, y revisión de tu técnica en video.</p></li>
+          <li class="reveal" data-reveal><span class="dcapp-loop-n">03</span><h3>Medimos</h3><p>Volumen de carga y kilos manejados, cumplimiento, cuestionarios de bienestar y fatiga, y revisión de tu técnica en video.</p></li>
           <li class="reveal" data-reveal><span class="dcapp-loop-n">04</span><h3>Ajusto</h3><p>Con esos datos ajusto volumen, intensidad, ejercicios y descansos. Y el ciclo vuelve a empezar, semana tras semana.</p></li>
         </ol>
         </div>
@@ -194,10 +198,12 @@
                 <h3 id="registro-heading">Enfocado en el ejercicio<br><em>que estás haciendo.</em></h3>
                 <p class="section-sub">El ejercicio actual se abre en grande y los demás se pliegan. Sin buscar, sin perder el hilo.</p>
                 <ul class="dcapp-list">
+                  <li><strong>Semáforo en cada serie:</strong> verde si subes, amarillo si igualas y rojo si bajas frente a la vez anterior.</li>
                   <li><strong>Rango de repeticiones e indicaciones</strong> de tu entrenador bien visibles.</li>
                   <li><strong>RIR con “F” de fallo</strong> y la marca de la vez anterior en cada ejercicio.</li>
                   <li><strong>Guardar avance</strong> sin salir; terminas cuando acabes, aunque sea más tarde.</li>
                   <li><strong>Máquina ocupada:</strong> cambias por la alternativa que tu entrenador definió.</li>
+                  <li><strong>Cronómetro de descanso</strong> en cada ejercicio, y registras en kilos o libras.</li>
                 </ul>
               </div>
             </div>
@@ -240,13 +246,112 @@
         </div>
         <p class="swipe-hint" aria-hidden="true">Desliza para ver más →</p>
         <div class="dcapp-grid dcapp-grid--after-tabs">
-          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg></span><h3>Sabes qué te toca</h3><p>La app sigue el calendario de tu bloque: tu semana, tu siguiente sesión y lo que tengas pendiente. Puedes ponerte al día hasta 7 días después o adelantar la semana siguiente.</p></article>
-          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span><h3>Registro serie por serie</h3><p>Kilos, repeticiones y RIR (con “F” de fallo) en botones grandes. Ves lo que hiciste la vez anterior y tu e1RM, y guardas tu avance cuando quieras.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h3"/></svg></span><h3>Sabes qué te toca</h3><p>La app sigue el calendario de tu bloque: tu semana, tu siguiente sesión y lo que tengas pendiente. Puedes ponerte al día hasta 7 días después o adelantar la semana siguiente, y te llega un aviso el día que te toca.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></svg></span><h3>Registro serie por serie</h3><p>Kilos o libras, repeticiones y RIR (con “F” de fallo) en botones grandes. Cada serie se colorea contra la vez anterior, tienes cronómetro de descanso y guardas tu avance cuando quieras.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM16 10l5-3v10l-5-3"/></svg></span><h3>Feedback de técnica</h3><p>Grabas la serie que te pido y la subes desde la app. Te respondo con un video: cámara lenta, cuadro a cuadro, ángulos, flechas y mi explicación en voz.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></span><h3>Cuestionarios que ajustan tu plan</h3><p>Cada domingo, bienestar (sueño, energía, estrés…). Cada dos semanas, fatiga y molestias por músculo. Con eso ajusto series, descanso y progresión.</p></article>
-          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M7 15l4-4 3 3 5-6"/></svg></span><h3>Tu progreso, con datos</h3><p>Rendimiento por ejercicio, por sesión y por semana; tu cumplimiento del bloque y tu historial completo, siempre disponible.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M7 15l4-4 3 3 5-6"/></svg></span><h3>Tu progreso, con datos</h3><p>Volumen de carga y kilos manejados por ejercicio, con semáforo de progresión; tu cumplimiento del bloque, tu historial completo y tu reporte de cada mes.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0M12 19h0"/></svg></span><h3>Funciona sin señal</h3><p>En el gym sin cobertura registras igual: se guarda en tu teléfono y se sube sola al recuperar la conexión. Se instala como app en iPhone y Android.</p></article>
         </div>
+      </div>
+    </section>
+
+    <!-- ─── TU PROGRESO, A LA VISTA (funciones nuevas) ─── -->
+    <section class="dcapp-section" id="progreso" aria-labelledby="progreso-heading">
+      <div class="orb-bg dcapp-orb" aria-hidden="true"></div>
+      <div class="dcapp-wrap">
+        <div class="section-header reveal" data-reveal>
+          <p class="section-kicker">04 — Tu progreso, a la vista</p>
+          <h2 class="section-heading" id="progreso-heading">Cada serie te dice<br><em>si vas mejorando.</em></h2>
+          <p class="section-sub">Ves tu avance mientras entrenas, descansas lo justo y recibes en tu celular lo que importa: qué te toca, tu feedback y tu mes en números.</p>
+        </div>
+        <p class="swipe-hint" aria-hidden="true">Desliza para ver más →</p>
+        <div class="dcapp-bento">
+
+          <article class="bento-card bento-card--live reveal" data-reveal>
+            <p class="bento-kicker">Registro en vivo</p>
+            <h3>Verde, amarillo o rojo, <em>en cada serie.</em></h3>
+            <p>Cada serie se colorea contra la misma serie de la vez anterior, y en cada campo vacío ves en gris lo que hiciste esa vez.</p>
+            <div class="ui-screen" aria-hidden="true">
+              <div class="ui-ex-head">
+                <span class="ui-ex-name">Prensa 45°</span>
+                <span class="ui-unit"><b>kg</b><i>lb</i></span>
+              </div>
+              <div class="ui-legend"><span><i class="ui-more"></i>Sube</span><span><i class="ui-same"></i>Igual</span><span><i class="ui-less"></i>Baja</span></div>
+              <div class="ui-sets">
+                <span class="ui-th">Serie</span><span class="ui-th">Kg</span><span class="ui-th">Reps</span><span class="ui-th">RIR</span>
+                <span class="ui-n">1</span><span class="ui-in ui-more">125</span><span class="ui-in ui-more">10</span><span class="ui-in">2</span>
+                <span class="ui-n">2</span><span class="ui-in ui-same">120</span><span class="ui-in ui-same">9</span><span class="ui-in">2</span>
+                <span class="ui-n">3</span><span class="ui-in ui-less">115</span><span class="ui-in ui-less">8</span><span class="ui-in">F</span>
+                <span class="ui-n">4</span><span class="ui-in ui-prev">120</span><span class="ui-in ui-prev">9</span><span class="ui-in ui-prev">2</span>
+              </div>
+              <p class="ui-rir">RIR indicado <b>2</b> · reportado <b>1</b></p>
+            </div>
+          </article>
+
+          <article class="bento-card bento-card--timer reveal" data-reveal>
+            <p class="bento-kicker">Cronómetro de descanso</p>
+            <h3>Descansa <em>lo justo.</em></h3>
+            <p>Vibra y suena al terminar, y te avisa aunque tengas el celular bloqueado.</p>
+            <div class="ui-screen ui-timer" aria-hidden="true">
+              <div class="ui-timer-row">
+                <div><span class="ui-clock">1:24</span><span class="ui-muted">Descanso · Prensa 45°</span></div>
+                <div class="ui-timer-btns"><span>−15 s</span><span>+15 s</span><span class="ui-text">Saltar</span></div>
+              </div>
+              <div class="ui-progress"><span></span></div>
+            </div>
+            <div class="ui-notif ui-notif--lock" aria-hidden="true"><img src="assets/img/logo.png" alt="" width="28" height="28" loading="lazy" /><div><span class="ui-notif-app">DC Entrenamiento · ahora</span><strong>⏱ ¡Descanso terminado!</strong><span>Prensa 45° · Serie 4</span></div></div>
+          </article>
+
+          <article class="bento-card bento-card--push reveal" data-reveal>
+            <p class="bento-kicker">Notificaciones</p>
+            <h3>Te avisa <em>cuando importa.</em></h3>
+            <p>Qué sesión te toca, tu feedback de técnica, tu cuestionario del domingo y tu reporte del mes.</p>
+            <div class="ui-notifs" aria-hidden="true">
+              <div class="ui-notif"><img src="assets/img/logo.png" alt="" width="28" height="28" loading="lazy" /><div><span class="ui-notif-app">DC Entrenamiento · ahora</span><strong>Hoy te toca: Pierna A 💪</strong><span>Semana 3. Tu sesión ya está en la app.</span></div></div>
+              <div class="ui-notif"><img src="assets/img/logo.png" alt="" width="28" height="28" loading="lazy" /><div><span class="ui-notif-app">DC Entrenamiento · 2 h</span><strong>Tu feedback está listo 🎥</strong></div></div>
+              <div class="ui-notif"><img src="assets/img/logo.png" alt="" width="28" height="28" loading="lazy" /><div><span class="ui-notif-app">DC Entrenamiento · dom</span><strong>Tu cuestionario del domingo</strong></div></div>
+            </div>
+          </article>
+
+          <article class="bento-card bento-card--progress reveal" data-reveal>
+            <p class="bento-kicker">Mi progreso</p>
+            <h3>Tu avance <em>por ejercicio.</em></h3>
+            <p>Volumen de carga (carga × repeticiones) y kilos manejados contra la vez anterior, con semáforo de progresión.</p>
+            <div class="ui-screen ui-progress-ui" aria-hidden="true">
+              <div class="ui-kpis">
+                <div><span class="ui-kpi-label">Volumen de carga</span><span class="ui-kpi ui-up">+6.4 %</span></div>
+                <div><span class="ui-kpi-label">Kg manejados</span><span class="ui-kpi ui-up">+3.1 %</span></div>
+                <div class="ui-bars"><i style="height:38%"></i><i style="height:46%"></i><i style="height:44%"></i><i style="height:58%"></i><i style="height:63%"></i><i style="height:74%"></i></div>
+              </div>
+              <ul class="ui-sema">
+                <li><span>Press banca</span><b class="ui-tag ui-tag--more">MÁS kg</b><b class="ui-tag ui-tag--same">IGUAL reps</b></li>
+                <li><span>Remo con barra</span><b class="ui-tag ui-tag--same">IGUAL kg</b><b class="ui-tag ui-tag--more">MÁS reps</b></li>
+                <li><span>Sentadilla</span><b class="ui-tag ui-tag--less">MENOS kg</b><b class="ui-tag ui-tag--more">MÁS reps</b></li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="bento-card bento-card--report reveal" data-reveal>
+            <div class="bento-report-copy">
+              <p class="bento-kicker">Reporte mensual</p>
+              <h3>Tu mes, <em>en números.</em></h3>
+              <p>Cada mes, en la app y en tu correo: sesiones, volumen de carga, kilos manejados, bienestar y un mensaje de tu entrenador.</p>
+            </div>
+            <div class="ui-screen ui-report" aria-hidden="true">
+              <p class="ui-report-title">Tu octubre <em>en números</em></p>
+              <div class="ui-report-kpis">
+                <div><span class="ui-kpi-label">Sesiones</span><span class="ui-kpi">11<small>/12</small></span></div>
+                <div><span class="ui-kpi-label">Volumen de carga</span><span class="ui-kpi ui-up">+8 %</span></div>
+                <div><span class="ui-kpi-label">Kg manejados</span><span class="ui-kpi ui-up">+5 %</span></div>
+                <div><span class="ui-kpi-label">Bienestar</span><span class="ui-kpi">7.8<small>/10</small></span></div>
+              </div>
+              <div class="ui-coach"><span class="ui-kpi-label">Mensaje de tu entrenador</span>Gran mes: subiste en 9 de 12 ejercicios. En noviembre vamos por más volumen de espalda.</div>
+            </div>
+          </article>
+
+        </div>
+        <p class="bento-note">Ejemplos ilustrativos de pantallas de la app.</p>
       </div>
     </section>
 
@@ -254,7 +359,7 @@
     <section class="dcapp-section" id="entrenadores" aria-labelledby="coach-heading">
       <div class="dcapp-wrap">
         <div class="section-header reveal" data-reveal>
-          <p class="section-kicker">04 — Para entrenadores</p>
+          <p class="section-kicker">05 — Para entrenadores</p>
           <h2 class="section-heading" id="coach-heading">El mismo sistema,<br><em>del lado del entrenador.</em></h2>
           <p class="section-sub">Así trabajo yo con cada atleta: programación, seguimiento, revisión de técnica y gestión, conectados en un mismo panel.</p>
         </div>
@@ -269,7 +374,10 @@
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h3>Cumplimiento visible</h3><p>Mapa semanas × sesiones por atleta: a tiempo, tarde, adelantada, saltada o no realizada. Sabes al instante quién necesita seguimiento.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM16 10l5-3v10l-5-3"/></svg></span><h3>Revisión de video profesional</h3><p>Estudio con cámara lenta, cuadro a cuadro, lápiz, flechas, círculos y medición de ángulos; grabas tu explicación y le llega al atleta con aviso por correo.</p></article>
           <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><h3>Pagos y vencimientos</h3><p>Registro de pagos, fecha de vencimiento automática y correos de aviso 7 días antes y el día que vence. Habilitas o pausas el acceso de cada atleta.</p></article>
-          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.35M15.5 4.15a3.5 3.5 0 0 1 0 6.7"/></svg></span><h3>Datos para decidir</h3><p>Rendimiento, e1RM, PRS y sRPE, tendencias de bienestar, sugerencias de volumen por músculo y explorador de entrenamientos con filtros.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20M10 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.35M15.5 4.15a3.5 3.5 0 0 1 0 6.7"/></svg></span><h3>Datos para decidir</h3><p>Volumen de carga, kilos manejados y semáforo por ejercicio, PRS y sRPE, tendencias de bienestar, sugerencias de volumen por músculo y explorador de entrenamientos con filtros.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span><h3>Prospectos y entrevista inicial</h3><p>Quien llena la entrevista entra como prospecto y lo conviertes en cliente con un toque. Su consulta inicial queda en su ficha, con alerta si reporta una lesión.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><h3>Correos a tus clientes</h3><p>Avisos informativos por audiencia —activos, por vencer, vencidos o los que elijas—, con vista previa, prueba a tu correo y baja automática.</p></article>
+          <article class="dcapp-card reveal" data-reveal><span class="dcapp-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><h3>Reporte mensual y avisos push</h3><p>Cada cliente recibe su mes en números con tu mensaje. A ti te avisan al celular los videos nuevos, las alertas rojas y los prospectos.</p></article>
         </div>
         <div class="dcapp-callout reveal" data-reveal>
           <div>
@@ -288,7 +396,7 @@
     <section class="dcapp-section" id="entrar" aria-labelledby="entrar-heading">
       <div class="dcapp-wrap">
         <div class="section-header reveal" data-reveal>
-          <p class="section-kicker">05 — Cómo entrar</p>
+          <p class="section-kicker">06 — Cómo entrar</p>
           <h2 class="section-heading" id="entrar-heading">Tres pasos para entrar<br><em>al ecosistema.</em></h2>
         </div>
         <p class="swipe-hint" aria-hidden="true">Desliza para ver más →</p>
@@ -326,6 +434,8 @@
           <details><summary>¿Funciona si en mi gym no hay señal?</summary><p>Sí. Tu registro se guarda en el teléfono y se sube automáticamente cuando recuperas conexión. Para subir videos sí necesitas internet (mejor con Wi-Fi).</p></details>
           <details><summary>¿Quién puede ver mis videos?</summary><p>Solo tú y tu entrenador. Se guardan cifrados en tránsito, con enlaces temporales, y se borran automáticamente a los 60 días; las notas escritas se conservan.</p></details>
           <details><summary>¿Qué pasa cuando termina mi plan?</summary><p>Conservas tu historial, tus gráficas y tus feedbacks. Para registrar sesiones nuevas renuevas tu plan: la app te muestra los planes y cómo pagar.</p></details>
+          <details><summary>¿La app me avisa cuándo me toca entrenar?</summary><p>Sí, si activas las notificaciones: te avisa la sesión del día, las sesiones pendientes de la semana, tu feedback de técnica, tu cuestionario y tu reporte del mes. En iPhone, primero instala la app en tu pantalla de inicio (iOS 16.4 o posterior).</p></details>
+          <details><summary>¿Puedo registrar en libras?</summary><p>Sí. En cada ejercicio eliges kilos o libras y la app lo recuerda; tu historial, tu progreso y tu reporte se muestran en esa unidad.</p></details>
           <details><summary>Olvidé mi contraseña, ¿qué hago?</summary><p>En la pantalla de entrada pulsa “Olvidé mi contraseña” y te llega un correo para crear una nueva.</p></details>
           <details><summary>Soy entrenador, ¿puedo usarla?</summary><p>Pronto. Escríbeme por WhatsApp desde la sección “Para entrenadores” y te aviso en cuanto abra cuentas para otros entrenadores.</p></details>
         </div>
@@ -384,6 +494,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20261113"></script>
+  <script defer src="main.js?v=20261117"></script>
 </body>
 </html>

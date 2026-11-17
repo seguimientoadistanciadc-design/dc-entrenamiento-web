@@ -1668,3 +1668,155 @@ textarea.mform-input { resize: vertical; min-height: 100px; line-height: 1.6; }
   .dcapp-shots { grid-template-columns: minmax(0, 1fr); }
   .dcapp-shots .dcapp-shot:nth-child(2) { display: none; }
 }
+
+/* ═══════════════════════════════════════════
+   APP — "Tu progreso, a la vista": mini-interfaces de las funciones
+   (colores del semáforo iguales a los de la app)
+   ═══════════════════════════════════════════ */
+:root {
+  --ui-more: #6fdc9a; --ui-more-ink: #0d2a19;
+  --ui-same: #ffcf6e; --ui-same-ink: #2e2300;
+  --ui-less: #e0445c; --ui-less-ink: #ffffff;
+}
+.dcapp-bento {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem;
+  grid-template-areas: "live timer push" "live progress progress" "report report report";
+}
+.bento-card--live { grid-area: live; }
+.bento-card--timer { grid-area: timer; }
+.bento-card--push { grid-area: push; }
+.bento-card--progress { grid-area: progress; }
+.bento-card.bento-card--report { grid-area: report; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 2rem; align-items: center; }
+.bento-card {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 1.6rem; border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border); background: var(--glass-bg); box-shadow: var(--glass-shadow);
+  transition: border-color 0.3s, transform 0.3s var(--ease-out);
+}
+.bento-card:hover { border-color: var(--line-rojo); transform: translateY(-3px); }
+.bento-kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rojo); }
+.bento-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
+.bento-card h3 em { font-style: italic; font-weight: 400; color: var(--rojo); }
+.bento-card > p:not(.bento-kicker), .bento-report-copy > p:not(.bento-kicker) { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.6; font-weight: 300; }
+.bento-report-copy { display: flex; flex-direction: column; gap: 0.6rem; }
+.bento-note { margin-top: 1rem; font-size: 0.78rem; color: var(--ink-mute); }
+
+/* Pantalla de la app (marco común) */
+.ui-screen {
+  margin-top: auto; padding: 1rem; border-radius: 14px;
+  background: #0b0d12; border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 20px 40px -20px rgba(0,0,0,0.8);
+  font-family: 'Source Sans 3', sans-serif; color: #f3f4f7;
+}
+.ui-muted { display: block; font-size: 0.78rem; color: #7b8191; }
+.ui-kpi-label { display: block; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #7b8191; margin-bottom: 0.25rem; }
+.ui-kpi { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; }
+.ui-kpi small { font-size: 0.75rem; font-weight: 400; color: #7b8191; margin-left: 2px; }
+.ui-up { color: var(--ui-more); }
+
+/* Registro en vivo */
+.ui-ex-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
+.ui-ex-name { font-weight: 700; font-size: 1rem; }
+.ui-unit { display: inline-flex; border: 1px solid rgba(255,255,255,0.12); border-radius: 999px; overflow: hidden; font-size: 0.72rem; }
+.ui-unit b, .ui-unit i { padding: 0.2rem 0.6rem; font-style: normal; }
+.ui-unit b { background: var(--rojo); color: #fff; }
+.ui-unit i { color: #7b8191; }
+.ui-legend { display: flex; gap: 0.8rem; font-size: 0.72rem; color: #7b8191; margin-bottom: 0.7rem; }
+.ui-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 0.3rem; vertical-align: middle; }
+.ui-legend .ui-more { background: var(--ui-more); } .ui-legend .ui-same { background: var(--ui-same); } .ui-legend .ui-less { background: var(--ui-less); }
+.ui-sets { display: grid; grid-template-columns: 2.6rem repeat(3, minmax(0, 1fr)); gap: 0.45rem; align-items: center; }
+.ui-th { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #7b8191; text-align: center; }
+.ui-th:first-child { text-align: left; }
+.ui-n { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #7b8191; }
+.ui-in {
+  text-align: center; padding: 0.5rem 0; border-radius: 9px; font-weight: 700; font-size: 0.95rem;
+  background: #161922; border: 1px solid rgba(255,255,255,0.08);
+}
+.ui-in.ui-more { background: var(--ui-more); border-color: var(--ui-more); color: var(--ui-more-ink); }
+.ui-in.ui-same { background: var(--ui-same); border-color: var(--ui-same); color: var(--ui-same-ink); }
+.ui-in.ui-less { background: var(--ui-less); border-color: #ff6b7f; color: var(--ui-less-ink); }
+.ui-in.ui-prev { color: #5b6170; font-weight: 400; }
+.ui-rir { margin-top: 0.8rem; font-size: 0.8rem; color: #b3b8c4; }
+.ui-rir b { color: #fff; }
+
+/* Cronómetro */
+.ui-timer-row { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+.ui-clock { display: block; font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.ui-timer-btns { display: flex; gap: 0.35rem; }
+.ui-timer-btns span { font-size: 0.75rem; padding: 0.35rem 0.55rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); color: #b3b8c4; }
+.ui-timer-btns .ui-text { border-color: transparent; }
+.ui-progress { margin-top: 0.8rem; height: 6px; border-radius: 99px; background: #1d212c; overflow: hidden; }
+.ui-progress span { display: block; width: 58%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ff3358, #d4143a); }
+
+/* Notificaciones */
+.ui-notifs { margin-top: auto; display: grid; gap: 0.5rem; }
+.ui-notif {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 0.7rem; align-items: start;
+  padding: 0.7rem 0.8rem; border-radius: 14px; background: rgba(40,42,50,0.85);
+  border: 1px solid rgba(255,255,255,0.07); backdrop-filter: blur(10px); font-family: 'Source Sans 3', sans-serif;
+}
+.ui-notif img { width: 28px; height: 28px; border-radius: 7px; background: #0b0d12; padding: 3px; }
+.ui-notif-app { display: block; font-size: 0.66rem; color: #9aa0ad; }
+.ui-notif strong { display: block; font-size: 0.86rem; color: #fff; }
+.ui-notif div > span:last-child:not(.ui-notif-app) { display: block; font-size: 0.78rem; color: #b3b8c4; }
+.ui-notif:nth-child(2) { opacity: 0.85; } .ui-notif:nth-child(3) { opacity: 0.65; }
+
+/* Mi progreso */
+.ui-kpis { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 1.2rem; align-items: end; margin-bottom: 0.9rem; }
+.ui-bars { display: flex; align-items: flex-end; gap: 5px; height: 46px; justify-content: flex-end; }
+.ui-bars i { width: 12px; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #ff3358, #9c0d2a); }
+.ui-sema { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+.ui-sema li { display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; }
+.ui-sema li span { flex: 1; color: #f3f4f7; }
+.ui-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; padding: 0.22rem 0.45rem; border-radius: 6px; }
+.ui-tag--more { background: var(--ui-more); color: var(--ui-more-ink); }
+.ui-tag--same { background: var(--ui-same); color: var(--ui-same-ink); }
+.ui-tag--less { background: var(--ui-less); color: var(--ui-less-ink); }
+
+/* Reporte mensual */
+.ui-report-title { font-family: 'Libre Baskerville', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; }
+.ui-report-title em { color: #ff3358; font-style: italic; font-weight: 400; }
+.ui-report-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; margin-bottom: 0.8rem; }
+.ui-report-kpis > div { padding: 0.7rem; border-radius: 10px; background: #161922; border: 1px solid rgba(255,255,255,0.06); }
+.ui-coach { font-size: 0.85rem; color: #b3b8c4; line-height: 1.5; padding: 0.7rem 0.8rem; border-left: 3px solid #d4143a; background: rgba(255,51,88,0.08); border-radius: 0 10px 10px 0; }
+
+@media (max-width: 980px) {
+  .dcapp-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "live timer" "live push" "progress progress" "report report"; }
+}
+@media (max-width: 768px) {
+  .dcapp-bento {
+    display: grid; grid-template-areas: none; grid-template-columns: none;
+    grid-auto-flow: column; grid-auto-columns: 86%; gap: 0.9rem; align-items: stretch;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 6vw;
+    margin-inline: -6vw; padding: 0.25rem 6vw 1rem; scrollbar-width: none;
+  }
+  .dcapp-bento::-webkit-scrollbar { display: none; }
+  .dcapp-bento > .bento-card { grid-area: auto; scroll-snap-align: start; }
+  .bento-card.bento-card--report { display: flex; }
+  .ui-report-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ui-kpis { grid-template-columns: auto auto; }
+  .ui-bars { display: none; }
+}
+
+/* ─── Chips de funciones del ecosistema (inicio) ─── */
+.dcapp-features { margin: 0 0 2rem; }
+.dcapp-features-title { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gris-claro); margin-bottom: 0.8rem; }
+.feature-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; padding: 0; margin: 0; }
+.feature-chips li {
+  font-size: 0.82rem; font-weight: 600; color: var(--ink-soft);
+  padding: 0.42rem 0.8rem; border-radius: 999px;
+  border: 1px solid var(--glass-border); background: var(--glass-bg);
+}
+.feature-chips li.is-new { color: var(--ink); border-color: var(--line-rojo); background: var(--rojo-suave); }
+.feature-chips li.is-new::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rojo); margin-right: 0.45rem; vertical-align: middle; }
+@media (max-width: 768px) {
+  .feature-chips li { font-size: 0.74rem; padding: 0.35rem 0.65rem; }
+}
+
+.bento-card--live .ui-screen { margin-top: auto; margin-bottom: auto; }
+.bento-card--timer .ui-screen { margin-top: auto; }
+.ui-notif--lock { margin-top: 0.2rem; }
+.ui-notif--lock strong { font-size: 0.82rem; }
+.bento-card--report .ui-screen { margin-top: 0; }
+.feature-chips-legend { color: var(--gris); margin-left: 0.3rem; }
+.feature-chips-legend i { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--rojo); margin: 0 0.35rem 0 0.3rem; vertical-align: middle; }
